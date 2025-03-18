@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { QueryProvider } from "./(providers)/_providers/QueryProvider";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "물댄동산",
