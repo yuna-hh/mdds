@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { QueryProvider } from "./(providers)/(context)/QueryProvider";
+import { QueryProvider } from "./(providers)/_providers/QueryProvider";
 
 export const metadata: Metadata = {
   title: "물댄동산",
