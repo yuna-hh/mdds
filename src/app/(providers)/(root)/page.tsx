@@ -1,7 +1,14 @@
+import ListHeader from "@/components/features/board/posts/list/ListHeader";
+import PostList from "@/components/features/board/posts/list/postList";
 import React from "react";
 
 const MainPage = () => {
-  return <div className="font-bold text-[16px]">물댄동산 지출증빙</div>;
+  return (
+    <div>
+      <ListHeader />
+      <PostList />
+    </div>
+  );
 };
 
 export default MainPage;

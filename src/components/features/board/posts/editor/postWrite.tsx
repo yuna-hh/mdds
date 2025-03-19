@@ -1,7 +1,7 @@
 import React from "react";
 
-const ExpenseWrite = () => {
-  return <div>ExpenseWrite</div>;
+const PostWrite = () => {
+  return <div>PostWrite</div>;
 };
 
-export default ExpenseWrite;
+export default PostWrite;
