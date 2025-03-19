@@ -21,6 +21,36 @@
   }
 }
 
+@layer components {
+}
+
+@layer utilities {
+  .board-style {
+    --board-padding: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1.8fr 6.9fr 1.4fr 1.4fr;
+    text-align: center;
+
+    &.board-sm span {
+      padding: 10px;
+    }
+
+    &.board-md > span {
+      padding: 14px;
+    }
+  }
+
+  .border-not-first > *:not(:first-child) {
+    border-left-width: 1px;
+    border-color: theme("colors.main-1");
+  }
+
+  .border-not-last > *:not(:last-child) {
+    border-bottom-width: 1px;
+    border-color: theme("colors.main-1");
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

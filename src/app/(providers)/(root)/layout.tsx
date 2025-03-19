@@ -5,7 +5,9 @@ const PageLayout = ({ children }: PropsWithChildren) => {
   return (
     <div>
       <Header />
-      {children}
+      <div className="flex flex-col items-center min-w-[456px] max-w-[1200px] m-auto">
+        {children}
+      </div>
     </div>
   );
 };
