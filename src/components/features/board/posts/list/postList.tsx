@@ -1,7 +1,7 @@
 import React from "react";
 
-const ExpenseList = () => {
-  return <div>ExpenseList</div>;
+const PostList = () => {
+  return <div>PostList</div>;
 };
 
-export default ExpenseList;
+export default PostList;

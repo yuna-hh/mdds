@@ -1,7 +1,7 @@
 import React from "react";
 
-const ExpenseEdit = () => {
-  return <div>ExpenseEdit</div>;
+const PostEdit = () => {
+  return <div>PostEdit</div>;
 };
 
-export default ExpenseEdit;
+export default PostEdit;
