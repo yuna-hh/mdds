@@ -9,10 +9,7 @@ const PostList = async () => {
     <ul className="mt-3 border border-main-1 rounded-[8px] border-not-last">
       {posts.map((post, index) => (
         <li key={post.id}>
-          <Link
-            href={`/board/detail/${post.id}`}
-            className="text-[16px] board-style border-not-first board-sm"
-          >
+          <Link href={`/board/detail/${post.id}`} className="text-[16px] board-style border-not-first board-sm">
             <span>{posts.length - index}</span>
             <span>{post.teams.team}</span>
             <span>{post.title}</span>
