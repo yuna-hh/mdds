@@ -1,5 +1,6 @@
 import ListHeader from "@/components/features/board/posts/list/ListHeader";
 import PostList from "@/components/features/board/posts/list/PostList";
+
 // export const revalidate = 0
 const MainPage = () => {
   return (
