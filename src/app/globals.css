@@ -62,3 +62,12 @@ body {
   color: var(--color-main-1);
   font-family: "Pretendard", Helvetica, sans-serif;
 }
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  font-weight: 600;
+  color: var(--color-main-2);
+}
