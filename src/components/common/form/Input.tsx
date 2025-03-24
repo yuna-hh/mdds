@@ -2,7 +2,7 @@ import { useId } from "react";
 
 type InputProps = {
   label: string;
-  type: "text" | "number";
+  type: "text" | "number" | "email" | "password";
   placeholder?: string;
   required?: boolean;
   variant?: "default" | "compact";
@@ -24,7 +24,7 @@ const Input = ({
   const inputId = useId();
   return (
     <div
-      className={`flex flex-col gap-[10px] w-full py-[7px] m-auto text-[14px] font-semibold border border-main-1 rounded-lg ${paddingSize[variant]}`}
+      className={`flex flex-col gap-[8px] w-full py-[7px] m-auto text-[14px] font-semibold border border-main-1 rounded-lg ${paddingSize[variant]}`}
     >
       <label htmlFor={inputId}>
         {label}
