@@ -1,15 +1,17 @@
-import { getPosts } from "@/service/post";
-import { PostListType } from "@/types/post";
-
+"use client";
+import { useGetPostList } from "@/hooks/board/useGetPostList";
 import Link from "next/link";
 
-const PostList = async () => {
-  const posts: PostListType[] = await getPosts();
+const PostList = () => {
+  const { posts, isPending, isError } = useGetPostList();
   return (
     <ul className="mt-3 border border-main-1 rounded-[8px] border-not-last">
       {posts.map((post, index) => (
         <li key={post.id}>
-          <Link href={`/board/detail/${post.id}`} className="text-[16px] board-style border-not-first board-sm">
+          <Link
+            href={`/board/detail/${post.id}`}
+            className="text-[16px] board-style border-not-first board-sm"
+          >
             <span>{posts.length - index}</span>
             <span>{post.teams.team}</span>
             <span>{post.title}</span>
