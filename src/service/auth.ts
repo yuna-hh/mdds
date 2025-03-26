@@ -12,7 +12,7 @@ export async function handleJoin({
   const response = await fetch("/api/auth/join", {
     method: "POST",
     headers: {
-      "ContentType": "application.json",
+      "ContentType": "application/json",
     },
     body: JSON.stringify({email, password, name, phone})
   })

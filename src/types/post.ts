@@ -4,7 +4,10 @@ export type PostListType = {
   author: string | null;
   created_at: string;
   teams: {
-    team: string
-    id: string
+    team: string;
+    id: string;
+  }
+  user: {
+    name: string;
   }
 }

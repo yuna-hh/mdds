@@ -6,7 +6,7 @@ export async function GET() {
   try {
     const { data, error } = await supabase
       .from("posts")
-      .select(`*, teams(team)`)
+      .select(`*, teams(team), user(name)`)
       .order("created_at", { ascending: false });
 
     if(error) {

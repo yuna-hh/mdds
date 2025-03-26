@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const PostList = () => {
   const { posts, isPending, isError } = useGetPostList();
+  console.log(posts);
   return (
     <ul className="mt-3 border border-main-1 rounded-[8px] border-not-last">
       {posts.map((post, index) => (
@@ -15,7 +16,7 @@ const PostList = () => {
             <span>{posts.length - index}</span>
             <span>{post.teams.team}</span>
             <span>{post.title}</span>
-            <span>{post.author}</span>
+            <span>{post.user.name}</span>
             <span>{post.created_at.substring(0, 10)}</span>
           </Link>
         </li>
