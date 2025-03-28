@@ -3,5 +3,10 @@ export type JoinDataType = {
   password: string;
   passwordConfirm: string;
   name: string;
-  phone?: number;
+  phone?: string;
 };
+
+export type LoginType = {
+  email: string;
+  password: string;
+}

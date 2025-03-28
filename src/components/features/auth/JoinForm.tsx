@@ -1,7 +1,13 @@
 "use client";
 import Button from "@/components/common/form/Button";
 import Input from "@/components/common/form/Input";
-import { validation } from "@/constants/userValidation";
+import {
+  EMAIL_VALIDATION,
+  PASSWORD_CONFIRM_VALIDATION,
+  PASSWORD_VALIDATION,
+  PHONE_NUMBER_VALIDATION,
+  USER_NAME_VALIDATION,
+} from "@/constants/authValidation";
 import { useSubmitJoin } from "@/hooks/auth/useSubmitJoin";
 import { JoinDataType } from "@/types/auth";
 import React from "react";
@@ -32,15 +38,19 @@ const JoinForm = () => {
         placeholder="이메일 형식으로 입력해주세요"
         required
         variant="compact"
-        {...register("email", validation())}
+        autoComplete="email"
+        {...register("email", EMAIL_VALIDATION)}
+        error={errors.email}
       />
       <Input
         label="비밀번호"
         type="password"
-        placeholder="비밀번호(8~20자)로 입력해주세요"
+        placeholder="비밀번호(6~20자)로 입력해주세요"
         required
         variant="compact"
-        {...register("password", validation())}
+        autoComplete="new-password"
+        {...register("password", PASSWORD_VALIDATION)}
+        error={errors.password}
       />
       <Input
         label="비밀번호 확인"
@@ -48,7 +58,9 @@ const JoinForm = () => {
         placeholder="비밀번호를 한번 더 입력해주세요"
         required
         variant="compact"
-        {...register("passwordConfirm", validation())}
+        autoComplete="new-password"
+        {...register("passwordConfirm", PASSWORD_CONFIRM_VALIDATION(password))}
+        error={errors.passwordConfirm}
       />
       <Input
         label="실명"
@@ -56,14 +68,16 @@ const JoinForm = () => {
         placeholder="실명을 입력해주세요"
         required
         variant="compact"
-        {...register("name", validation())}
+        {...register("name", USER_NAME_VALIDATION)}
+        error={errors.name}
       />
       <Input
         label="휴대전화"
-        type="number"
+        type="tel"
         placeholder="-없이 숫자만 입력"
         variant="compact"
-        {...register("phone", validation())}
+        {...register("phone", PHONE_NUMBER_VALIDATION)}
+        error={errors.phone}
       />
       <Button content="회원가입" type="submit" />
     </form>

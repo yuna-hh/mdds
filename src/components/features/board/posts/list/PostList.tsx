@@ -4,7 +4,6 @@ import Link from "next/link";
 
 const PostList = () => {
   const { posts, isPending, isError } = useGetPostList();
-  console.log(posts);
   return (
     <ul className="mt-3 border border-main-1 rounded-[8px] border-not-last">
       {posts.map((post, index) => (
