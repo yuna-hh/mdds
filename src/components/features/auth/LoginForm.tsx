@@ -32,6 +32,7 @@ const LoginForm = () => {
         label="아이디"
         type="email"
         variant="compact"
+        autoComplete="email"
         {...register("email", EMAIL_VALIDATION)}
         error={errors.email}
       />
@@ -39,6 +40,7 @@ const LoginForm = () => {
         label="비밀번호"
         type="password"
         variant="compact"
+        autoComplete="new-password"
         {...register("password", PASSWORD_VALIDATION)}
         error={errors.password}
       />
