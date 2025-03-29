@@ -1,11 +1,13 @@
 import { useId } from "react";
+import { FieldError } from "react-hook-form";
 
 type InputProps = {
   label: string;
-  type: "text" | "number" | "email" | "password";
+  type: "text" | "number" | "email" | "password" | "tel";
   placeholder?: string;
   required?: boolean;
   variant?: "default" | "compact";
+  error?: FieldError;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & Omit<React.ComponentProps<"input">, "onChange">;
 const paddingSize = {
@@ -19,24 +21,32 @@ const Input = ({
   placeholder,
   required,
   variant = "default",
+  error,
   ...props
 }: InputProps) => {
   const inputId = useId();
   return (
-    <div
-      className={`flex flex-col gap-[8px] w-full py-[7px] m-auto text-[14px] font-semibold border border-main-1 rounded-lg ${paddingSize[variant]}`}
-    >
-      <label htmlFor={inputId}>
-        {label}
-        {required && <span className="ml-[4px] text-red">*</span>}
-      </label>
-      <input
-        id={inputId}
-        type={type}
-        placeholder={placeholder}
-        {...props}
-        className="text-[18px]"
-      />
+    <div className="w-full text-[14px]">
+      <div
+        className={`flex flex-col gap-[8px] py-[7px] font-semibold border border-main-1 rounded-lg ${paddingSize[variant]}`}
+      >
+        <label htmlFor={inputId}>
+          {label}
+          {required && <span className="ml-[4px] text-red">*</span>}
+        </label>
+        <input
+          id={inputId}
+          type={type}
+          placeholder={placeholder}
+          {...props}
+          className="text-[18px]"
+        />
+      </div>
+      {error && (
+        <span className="inline-block ml-[4px] mt-[2px] text-red">
+          {error.message}
+        </span>
+      )}
     </div>
   );
 };

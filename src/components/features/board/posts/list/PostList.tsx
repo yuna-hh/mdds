@@ -15,7 +15,7 @@ const PostList = () => {
             <span>{posts.length - index}</span>
             <span>{post.teams.team}</span>
             <span>{post.title}</span>
-            <span>{post.author}</span>
+            <span>{post.user.name}</span>
             <span>{post.created_at.substring(0, 10)}</span>
           </Link>
         </li>
