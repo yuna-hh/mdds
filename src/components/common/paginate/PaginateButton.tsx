@@ -16,11 +16,11 @@ function PaginateBtn({ pageCount, currentPage, onPageChange }: Readonly<Paginate
       forcePage={currentPage}
       onPageChange={onPageChange}
       containerClassName={"flex justify-center space-x-3 text-sm mt-4"}
-      previousLinkClassName={"text-black focus:outline-none"}
-      nextLinkClassName={"text-black focus:outline-none"}
-      pageLinkClassName={"text-black focus:outline-none focus:text-main-1"}
+      previousLinkClassName={"text-main-1 focus:outline-none"}
+      nextLinkClassName={"text-main-1 focus:outline-none"}
+      pageLinkClassName={"text-main2 focus:font-bold focus:outline-none focus:text-main-1"}
       breakLinkClassName={"page-link"}
-      disabledLinkClassName={"focus:text-main-3 cursor-not-allowed"}
+      disabledLinkClassName={"focus:text-main-2 cursor-not-allowed"}
     />
   );
 }

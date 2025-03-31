@@ -11,3 +11,10 @@ export type PostListType = {
     name: string;
   }
 }
+
+export type PostListData = {
+  data: PostListType[];
+  count: number;
+  page: number;
+  limit: number;
+}

@@ -1,15 +1,15 @@
 import { getPostList } from '@/service/post';
-import { PostListType } from '@/types/post';
+import { PostListData } from '@/types/post';
 import { useQuery } from '@tanstack/react-query';
 
-export function useGetPostList() {
+export function useGetPostList(page?: number, limit?:number) {
   const {
-    data: posts = [],
+    data: postListData,
     isPending,
     isError
-  } = useQuery<PostListType[]>({
-    queryKey:["postList"],
-    queryFn: getPostList
+  } = useQuery<PostListData>({
+    queryKey:["postList", page, limit],
+    queryFn: ()=>getPostList(page, limit)
   })
-  return {posts, isPending, isError}
+  return {postListData, isPending, isError}
 }
