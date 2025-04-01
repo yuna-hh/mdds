@@ -35,3 +35,7 @@ export const PHONE_NUMBER_VALIDATION = {
     // 숫자만 입력 가능하게
   }
 }
+
+export const POLICY_VALIDATION = {
+  required: "개인정보 수집에 동의해야 합니다"
+}

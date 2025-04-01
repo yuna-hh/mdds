@@ -1,6 +1,7 @@
 import { handleJoin } from '@/service/auth'
 import { JoinDataType } from '@/types/auth'
 import { useRouter } from 'next/navigation'
+import { Notify } from 'notiflix'
 
 
 export function useSubmitJoin() {
@@ -9,9 +10,10 @@ export function useSubmitJoin() {
     const {passwordConfirm, ...joinData} = data
     const response = await handleJoin(joinData)
     if(response.message === "회원가입에 실패하였습니다") {
-      return console.log("이미 가입된 이메일 입니다")
+      return Notify.failure("이미 가입된 이메일 입니다")   
     }
-    router.push("/")
+    Notify.success("회원가입이 완료되었습니다")
+    router.push("/login")
   }
   return handleSubmitJoin
 }
