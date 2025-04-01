@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { Notify } from 'notiflix';
 
 // export function handleError(message: string): never {
 //   console.error("데이터 조회 실패:");
@@ -19,5 +20,5 @@ export function handleError(message: string) {
 }
 
 export function handleNetworkError() {
-  return NextResponse.json({ error: "네트워크 오류가 발생하였습니다" })
+  return NextResponse.json({ error: "네트워크 오류가 발생하였습니다. 다시 시도해주세요" })
 }

@@ -3,7 +3,7 @@ import { FieldError } from "react-hook-form";
 
 type InputProps = {
   label: string;
-  type: "text" | "number" | "email" | "password" | "tel";
+  type: "text" | "number" | "email" | "password" | "tel" | "checkbox";
   placeholder?: string;
   required?: boolean;
   variant?: "default" | "compact";

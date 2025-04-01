@@ -1,8 +1,13 @@
-import React from "react";
-
-const Policy = () => {
+type PolicyPropsType = {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const Policy = ({ isOpen, setIsOpen }: PolicyPropsType) => {
+  const handleClose = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    <div>
+    <div className="fixed top-0 inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md">
       <div className="w-[542px]">
         <div className="py-[50px] px-[40px] text-sm bg-white">
           <p>
@@ -55,7 +60,11 @@ const Policy = () => {
             파기합니다.
           </p>
         </div>
-        <button className="w-full py-[17px] font-bold text-lg text-white bg-main-1">
+        <button
+          type="button"
+          onClick={handleClose}
+          className="w-full py-[17px] font-bold text-lg text-white bg-main-1 cursor-pointer"
+        >
           닫기
         </button>
       </div>

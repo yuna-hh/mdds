@@ -1,4 +1,3 @@
-import Policy from "@/components/features/auth/Policy";
 import ListHeader from "@/components/features/board/posts/list/ListHeader";
 import PostList from "@/components/features/board/posts/list/PostList";
 

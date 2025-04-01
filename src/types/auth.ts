@@ -4,6 +4,7 @@ export type JoinDataType = {
   passwordConfirm: string;
   name: string;
   phone?: string;
+  policy: boolean;
 };
 
 export type LoginType = {

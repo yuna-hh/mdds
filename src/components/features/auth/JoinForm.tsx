@@ -10,10 +10,13 @@ import {
 } from "@/constants/authValidation";
 import { useSubmitJoin } from "@/hooks/auth/useSubmitJoin";
 import { JoinDataType } from "@/types/auth";
-import React from "react";
+import React, { ReactEventHandler, useState } from "react";
 import { useForm } from "react-hook-form";
+import Policy from "./Policy";
+import PolicyForm from "./PolicyForm";
 
 const JoinForm = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -26,6 +29,9 @@ const JoinForm = () => {
   const handleSubmitJoin = useSubmitJoin();
   const onSubmit = (data: JoinDataType) => {
     handleSubmitJoin(data);
+  };
+  const handlePolicyOpen = () => {
+    setIsOpen(!isOpen);
   };
   return (
     <form
@@ -79,6 +85,17 @@ const JoinForm = () => {
         {...register("phone", PHONE_NUMBER_VALIDATION)}
         error={errors.phone}
       />
+      <div className="flex flex-row justify-between w-full mb-10 text-[14px]">
+        <PolicyForm register={register} watch={watch} errors={errors} />
+        <button
+          type="button"
+          onClick={handlePolicyOpen}
+          className="underline cursor-pointer"
+        >
+          보기
+        </button>
+        {isOpen && <Policy isOpen={isOpen} setIsOpen={setIsOpen} />}
+      </div>
       <Button content="회원가입" type="submit" />
     </form>
   );
