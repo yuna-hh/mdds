@@ -1,3 +1,4 @@
+import { createClient } from '@/supabase/client';
 import { LoginType } from '@/types/auth';
 
 export async function handleJoin({
@@ -30,4 +31,10 @@ export async function handleLogin({email, password}: LoginType) {
     body: JSON.stringify({email, password}),
   })
   return response.json()
+}
+
+export async function getUserInfo() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  return user
 }
