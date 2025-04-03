@@ -1,5 +1,4 @@
 import Header from "@/components/common/layout/Header";
-import React, { PropsWithChildren } from "react";
 import AuthProvider from "../_providers/AuthProvider";
 
 const PageLayout = ({ children }: { children: React.ReactNode }) => {

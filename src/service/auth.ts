@@ -38,3 +38,10 @@ export async function getUserInfo() {
   const { data: { user } } = await supabase.auth.getUser()
   return user
 }
+
+export async function logout() {
+  const response = await fetch("/api/auth/logout",{
+    method: "DELETE"
+  })
+  return response.json()
+}
