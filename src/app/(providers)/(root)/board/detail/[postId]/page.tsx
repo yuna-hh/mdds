@@ -1,7 +1,8 @@
+import PostPage from "@/components/features/board/posts/detail/PostPage";
 import React from "react";
 
 const PostDetailPage = () => {
-  return <div>상세상세상세상세페이지</div>;
+  return <PostPage />;
 };
 
 export default PostDetailPage;
