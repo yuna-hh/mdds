@@ -21,7 +21,6 @@ export async function GET(request: NextRequest) {
     return handleSuccess({data, page, limit, count}, undefined)
 
   } catch (error) {
-    console.error(error)
     return handleError("실패하였습니다")
   }
 }

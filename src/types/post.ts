@@ -18,3 +18,16 @@ export type PostListData = {
   page: number;
   limit: number;
 }
+
+export type PostDataType = {
+  account: string;
+  author: string;
+  created_at: string
+  id: string;
+  price: number;
+  team: string;
+  teams: {team: string};
+  title: string;
+  usage_detail: string;
+  user_list: string;
+}

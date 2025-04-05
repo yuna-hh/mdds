@@ -8,3 +8,9 @@ export async function getPostList(
   const data = await response.json()
   return data.data
 }
+
+export async function getPost(postId: string){
+  const response = await fetch(`/api/board/post/${postId}`)
+  const data = await response.json()
+  return data.data
+}

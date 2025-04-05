@@ -20,7 +20,7 @@ const AuthProvider = ({
       saveUser(userInfo);
     }
   }, [saveUser, userInfo]);
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 export default AuthProvider;

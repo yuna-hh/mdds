@@ -16,7 +16,9 @@ const Header = () => {
       {user ? (
         <div className="flex gap-[25px]">
           <Link href={"/"}>글쓰기</Link>
-          <button onClick={handleLogout}>로그아웃</button>
+          <button className="cursor-pointer" onClick={handleLogout}>
+            로그아웃
+          </button>
         </div>
       ) : (
         <div className="flex gap-10">
