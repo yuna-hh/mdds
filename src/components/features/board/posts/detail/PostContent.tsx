@@ -2,10 +2,11 @@
 import React from "react";
 import PostAction from "./PostAction";
 import { useGetPost } from "@/hooks/board/post/useGetPost";
-
+import Loading from "@/components/common/status/Loading";
 const PostContent = ({ postId }: { postId: string }) => {
   const { data, isPending, isError } = useGetPost(postId);
-  if (!data) return <div>데이터가 없습니다</div>;
+  if (!data) return <Loading />;
+  if (isPending) return <Loading />;
   const { teams, title, usage_detail, price, user_list, account } = data[0];
   return (
     <div>

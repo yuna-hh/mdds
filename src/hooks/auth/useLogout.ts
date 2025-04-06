@@ -1,6 +1,6 @@
 import { logout } from '@/service/auth';
 import { authStore } from '@/zustand/authStore';
-import { QueryClient, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation'
 import { Notify } from 'notiflix';
 

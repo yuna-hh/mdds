@@ -10,6 +10,9 @@
   --color-main-2: #a4b1d3;
   --color-main-3: #f8faff;
   --color-red: #fd5a0f;
+  --color-gray-1: #cbcccb;
+  --color-gray-2: #e2e3e1;
+  --color-gray-3: #f9faf9;
 }
 
 @layer base {
