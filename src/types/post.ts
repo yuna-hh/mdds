@@ -1,3 +1,4 @@
+import { Tables } from './supabase';
 export type PostListType = {
   id: string;
   title: string;
@@ -19,15 +20,21 @@ export type PostListData = {
   limit: number;
 }
 
-export type PostDataType = {
-  account: string;
-  author: string;
-  created_at: string
-  id: string;
-  price: number;
-  team: string;
-  teams: {team: string};
-  title: string;
-  usage_detail: string;
-  user_list: string;
-}
+// export type PostDataType = {
+//   account: string;
+//   author: string;
+//   created_at: string
+//   id: string;
+//   price: number;
+//   team: string;
+//   teams: {team: string};
+//   title: string;s
+//   usage_detail: string;
+//   user_list: string;
+// }
+
+export type PostResponseType = Tables<"posts"> & Pick <Tables<"teams">,"team">
+
+export type PostRequestType = Omit <Tables<"posts">,"created_at" | "id">
+
+export type TeamsType = Tables<"teams">
