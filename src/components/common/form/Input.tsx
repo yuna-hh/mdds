@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { useId } from "react";
 import { FieldError } from "react-hook-form";
 
 type InputProps = {
   label: string;
-  type: "text" | "number" | "email" | "password" | "tel" | "checkbox";
+  type: "text" | "number" | "email" | "password" | "tel";
   placeholder?: string;
   required?: boolean;
   variant?: "default" | "compact";
@@ -25,6 +26,30 @@ const Input = ({
   ...props
 }: InputProps) => {
   const inputId = useId();
+
+  // if (type === "file")
+  //   return (
+  //     <label
+  //       htmlFor={inputId}
+  //       className="flex flex-col items-center py-[25px] text-[18px] font-semibold text-main-2 border border-dashed bg-main-3 rounded-lg"
+  //     >
+  //       <Image
+  //         src={"/icon-plus.svg"}
+  //         width={70}
+  //         height={70}
+  //         alt="이미지 첨부 아이콘"
+  //         className="mb-[17px]"
+  //       />
+  //       {label}
+  //       <input
+  //         id={inputId}
+  //         type={type}
+  //         placeholder={placeholder}
+  //         {...props}
+  //         className="hidden"
+  //       />
+  //     </label>
+  //   );
   return (
     <div className="w-full text-[14px]">
       <div
