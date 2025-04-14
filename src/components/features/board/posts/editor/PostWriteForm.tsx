@@ -26,7 +26,7 @@ const PostWriteForm = () => {
     mode: "onSubmit",
   });
   return (
-    <div className="mt-[64px]">
+    <div className="my-[64px]">
       <PostNotice />
       {/* <SelectTeam /> */}
       <form className="flex flex-col gap-3 mt-3">
@@ -65,7 +65,7 @@ const PostWriteForm = () => {
           {...register("account", ACCOUNT_VALIDATION)}
           error={errors.account}
         />
-        <ImageUpload register={register} watch={watch} setValue={setValue} />
+        <ImageUpload register={register} errors={errors} setValue={setValue} />
         <div className="flex justify-center gap-[9px] mt-[38px] ">
           <Button href="/" content="취소하기" variant="option" />
           <Button content="등록하기" />

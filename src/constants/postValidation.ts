@@ -25,3 +25,18 @@ export const PRICE_VALIDATION ={
 export const ACCOUNT_VALIDATION ={
   required: "입금 계좌를 입력해주세요",
 }
+
+
+export const fileExtension = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+// export const fileExtension = ["jpeg", "jpg", "png", "webp"];
+
+export const IMAGE_VALIDATION ={
+  required: "이미지를 첨부해주세요",
+  // validate: (value: string) => {
+  //   if(!fileExtension.some(ext => value.endsWith(ext))) return "지원되는 이미지 파일 형식은 jpg, jpeg, png, heic, webp입니다"
+  // }
+  // validate: (value: string) => {
+  //   const ext = value.split(".")[1]
+  //   if(!fileExtension.includes(ext)) return "지원되는 이미지 파일 형식은 jpg, jpeg, png, heic, webp입니다"
+  // }
+}

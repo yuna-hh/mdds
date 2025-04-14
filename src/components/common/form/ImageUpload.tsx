@@ -1,45 +1,55 @@
 "use client";
+import { fileExtension, IMAGE_VALIDATION } from "@/constants/postValidation";
+import useUploadImage from "@/hooks/board/post/useUploadImage";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
+import { Notify } from "notiflix";
 import React, { useEffect, useState } from "react";
-import {
-  UseFormRegister,
-  UseFormSetValue,
-  UseFormWatch,
-} from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
-type ImageUploadType = {
+type ImageUploadProps = {
   register: UseFormRegister<PostRequestType>;
-  watch: UseFormWatch<PostRequestType>;
-  // errors: UseFormWatch<PostRequestType>
+  errors: FieldErrors<PostRequestType>;
   setValue: UseFormSetValue<PostRequestType>;
 };
 
-const ImageUpload = ({ register, watch, setValue }: ImageUploadType) => {
+const ImageUpload = ({ register, errors, setValue }: ImageUploadProps) => {
   const [preview, setPreview] = useState("");
-  const [uploadFile, setUploadFile] = useState<File | null>(null);
-
-  const image = watch("img_url");
+  const { mutate: uploadImage } = useUploadImage();
 
   const imageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
-      console.log(file);
-      setUploadFile(file);
-      const imgUrl = URL.createObjectURL(file);
-      setPreview(imgUrl);
+      if (!fileExtension.includes(file.type)) {
+        return Notify.failure(
+          "지원되는 이미지 파일 형식은 jpg, jpeg, png, webp입니다"
+        );
+      }
+      const previewUrl = URL.createObjectURL(file);
+      setPreview(previewUrl);
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      uploadImage(formData, {
+        onSuccess: (data) => {
+          setValue(
+            "img_url",
+            `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}/${data.data}`
+          );
+        },
+      });
     }
   };
 
-  const changeImageType = () => {};
-
   useEffect(() => {
-    if (preview) {
-      return () => {
+    return () => {
+      if (preview) {
         URL.revokeObjectURL(preview);
-      };
-    }
+      }
+    };
   }, [preview]);
+
   return (
     <label
       htmlFor="image"
@@ -72,9 +82,15 @@ const ImageUpload = ({ register, watch, setValue }: ImageUploadType) => {
         id="image"
         type="file"
         className="hidden"
-        {...register("img_url")}
+        accept="image/jpg, image/png, image/webp, image/jpeg"
+        {...register("img_url", IMAGE_VALIDATION)}
         onChange={(e) => imageHandler(e)}
       />
+      {errors?.img_url && (
+        <span className="inline-block ml-[4px] mt-[2px] text-red">
+          {errors.img_url.message}
+        </span>
+      )}
     </label>
   );
 };

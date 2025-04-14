@@ -16,7 +16,15 @@ export async function getPost(postId: string){
 }
 
 export async function getCategory() {
-  const response = await fetch(`/api/board/category`)
+  const response = await fetch("/api/board/category")
   const data = await response.json()
   return data.data
+}
+
+export async function uploadImage (formData: FormData) {
+  const response = await fetch("/api/board/post/image", {
+    method: "POST",
+    body: formData
+  })
+  return response.json()
 }
