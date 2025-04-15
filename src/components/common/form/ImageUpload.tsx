@@ -22,11 +22,7 @@ const ImageUpload = ({ control, errors }: ImageUploadProps) => {
   ) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      // if (!fileExtension.includes(file.type)) {
-      //   return Notify.failure(
-      //     "지원되는 이미지 파일 형식은 jpg, jpeg, png, webp입니다"
-      //   );
-      // }
+
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
 
