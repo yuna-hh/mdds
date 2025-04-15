@@ -1,3 +1,5 @@
+import { PostRequestType } from '@/types/post'
+
 export async function getPostList(
   page?: number,
   limit?: number
@@ -25,6 +27,17 @@ export async function uploadImage (formData: FormData) {
   const response = await fetch("/api/board/post/image", {
     method: "POST",
     body: formData
+  })
+  return response.json()
+}
+
+export async function uploadPost(data: PostRequestType) {
+  const response = await fetch("/api/board/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data)
   })
   return response.json()
 }

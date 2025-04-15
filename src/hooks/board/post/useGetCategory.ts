@@ -3,7 +3,7 @@ import { TeamsType } from '@/types/post'
 import { useQuery } from '@tanstack/react-query'
 
 export const useGetCategory = () => {
-  const { data, isPending, isError} = useQuery<TeamsType>({
+  const { data, isPending, isError} = useQuery<TeamsType[]>({
     queryKey: ["category"],
     queryFn: getCategory
   })

@@ -13,23 +13,35 @@ import {
 } from "@/constants/postValidation";
 import { PostRequestType } from "@/types/post";
 import ImageUpload from "@/components/common/form/ImageUpload";
-// import SelectTeam from "./category/SelectTeam";
+import SelectTeam from "./category/SelectTeam";
+import useUploadPost from "@/hooks/board/post/useUploadPost";
+import { authStore } from "@/zustand/authStore";
 
 const PostWriteForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    setValue,
+    control,
     formState: { errors },
-  } = useForm<PostRequestType>({
-    mode: "onSubmit",
-  });
+  } = useForm<PostRequestType>();
+  const { mutate: uploadPost } = useUploadPost();
+  const { user } = authStore();
+  const onSubmit = (data: PostRequestType) => {
+    const postData = {
+      ...data,
+      author: user?.id as string,
+    };
+    console.log(postData);
+    uploadPost(postData);
+  };
   return (
     <div className="my-[64px]">
       <PostNotice />
-      {/* <SelectTeam /> */}
-      <form className="flex flex-col gap-3 mt-3">
+      <form
+        className="flex flex-col gap-3 mt-3"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <SelectTeam control={control} errors={errors} />
         <Input
           label="제목"
           type="text"
@@ -65,9 +77,14 @@ const PostWriteForm = () => {
           {...register("account", ACCOUNT_VALIDATION)}
           error={errors.account}
         />
-        <ImageUpload register={register} errors={errors} setValue={setValue} />
+        <ImageUpload control={control} errors={errors} />
         <div className="flex justify-center gap-[9px] mt-[38px] ">
-          <Button href="/" content="취소하기" variant="option" />
+          <Button
+            href="/"
+            content="취소하기"
+            variant="option"
+            confirm="글 작성을 취소하시겠습니까?"
+          />
           <Button content="등록하기" />
         </div>
       </form>

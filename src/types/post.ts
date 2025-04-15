@@ -33,7 +33,7 @@ export type PostListData = {
 //   user_list: string;
 // }
 
-export type PostResponseType = Tables<"posts"> & Pick <Tables<"teams">,"team">
+export type PostResponseType = Tables<"posts"> & { teams: Pick <Tables<"teams">,"team"> }
 
 export type PostRequestType = Omit <Tables<"posts">,"created_at" | "id">
 
