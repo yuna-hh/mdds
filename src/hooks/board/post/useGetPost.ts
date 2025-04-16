@@ -6,7 +6,7 @@ export function useGetPost(postId: string) {
   const {data,
     isPending,
     isError
-  } = useQuery<PostResponseType[]>({
+  } = useQuery<PostResponseType>({
     queryKey: ["postData", postId],
     queryFn: () => getPost(postId),
   })

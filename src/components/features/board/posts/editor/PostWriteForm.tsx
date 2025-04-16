@@ -31,7 +31,6 @@ const PostWriteForm = () => {
       ...data,
       author: user?.id as string,
     };
-    console.log(postData);
     uploadPost(postData);
   };
   return (

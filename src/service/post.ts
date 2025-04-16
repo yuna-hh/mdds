@@ -32,12 +32,19 @@ export async function uploadImage (formData: FormData) {
 }
 
 export async function uploadPost(data: PostRequestType) {
-  const response = await fetch("/api/board/", {
+  const response = await fetch("/api/board/post", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data)
+  })
+  return response.json()
+}
+
+export async function deletePost(postId: string) {
+  const response = await fetch(`/api/board/post/${postId}`,{
+    method: "DELETE",
   })
   return response.json()
 }

@@ -1,3 +1,5 @@
+import { Notify } from 'notiflix'
+
 export const CATEGORY_VALIDATION ={
   required: "항목을 선택해주세요",
 }
@@ -33,6 +35,14 @@ export const IMAGE_VALIDATION ={
   required: "이미지를 첨부해주세요",
   validate: (value: string) => {
     if(!fileExtension.some(ext => value.endsWith(ext))) return "지원되는 이미지 파일 형식은 jpg, jpeg, png, heic, webp입니다"
+  }
+}
+
+export const extensionValidation = (file: File) => {
+  const extensions = ["image/jpeg", "image/jpg", "image/png", "image/webp"]
+  if(!extensions.includes(file.type)) {
+    Notify.failure("지원되는 이미지 파일 형식은 jpg, jpeg, png, heic, webp입니다")
+    return false
   }
 }
 

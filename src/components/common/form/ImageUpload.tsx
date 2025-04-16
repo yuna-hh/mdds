@@ -1,9 +1,11 @@
 "use client";
-import { fileExtension, IMAGE_VALIDATION } from "@/constants/postValidation";
+import {
+  extensionValidation,
+  IMAGE_VALIDATION,
+} from "@/constants/postValidation";
 import useUploadImage from "@/hooks/board/post/useUploadImage";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
-import { Notify } from "notiflix";
 import React, { useEffect, useState } from "react";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 
@@ -22,6 +24,8 @@ const ImageUpload = ({ control, errors }: ImageUploadProps) => {
   ) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
+
+      if (!extensionValidation(file)) return;
 
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
