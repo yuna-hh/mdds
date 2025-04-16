@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { useId } from "react";
 import { FieldError } from "react-hook-form";
 
 type InputProps = {
   label: string;
-  type: "text" | "number" | "email" | "password" | "tel" | "checkbox";
+  type: "text" | "number" | "email" | "password" | "tel";
   placeholder?: string;
   required?: boolean;
   variant?: "default" | "compact";

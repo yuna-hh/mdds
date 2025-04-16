@@ -10,7 +10,7 @@ import {
 } from "@/constants/authValidation";
 import { useSubmitJoin } from "@/hooks/auth/useSubmitJoin";
 import { JoinDataType } from "@/types/auth";
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Policy from "./Policy";
 import PolicyForm from "./PolicyForm";

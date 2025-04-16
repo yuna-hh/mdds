@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { QueryProvider } from "./(providers)/_providers/QueryProvider";
 import localFont from "next/font/local";
+import NotiflixProvider from "./(providers)/_providers/NotiflixProvider";
 
 export const metadata: Metadata = {
   title: "물댄동산",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="ko">
       <body className="mim-h-screen">
         <QueryProvider>
-          <main>{children}</main>
+          <NotiflixProvider>
+            <main>{children}</main>
+          </NotiflixProvider>
         </QueryProvider>
       </body>
     </html>
