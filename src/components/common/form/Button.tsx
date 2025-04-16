@@ -14,13 +14,7 @@ const bgColor = {
   option: "bg-main-2",
 };
 
-const Button = ({
-  content,
-  variant = "default",
-  href,
-  onClick,
-  ...props
-}: ButtonProps) => {
+const Button = ({ content, variant = "default", href, onClick, ...props }: ButtonProps) => {
   const throttledClick = useCallback(
     throttle((event: MouseEvent<HTMLButtonElement>) => {
       if (onClick) {
