@@ -4,7 +4,7 @@ import { PostRequestType } from "@/types/post";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import Select from "react-select";
 import { categoryStyle } from "./categoryStyle";
-import { TEAM_VALIDATION } from "@/constants/postValidation";
+import { TEAM_VALIDATION } from "@/constants/validation/postValidation";
 
 type SelectTeamProps = {
   control: Control<PostRequestType, string>;

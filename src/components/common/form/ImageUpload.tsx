@@ -2,7 +2,7 @@
 import {
   extensionValidation,
   IMAGE_VALIDATION,
-} from "@/constants/postValidation";
+} from "@/constants/validation/postValidation";
 import useUploadImage from "@/hooks/board/post/useUploadImage";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
@@ -36,7 +36,7 @@ const ImageUpload = ({ control, errors }: ImageUploadProps) => {
       uploadImage(formData, {
         onSuccess: (data) => {
           onChange(
-            `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}/${data.data}`
+            `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}board//${data.data}`
           );
         },
       });

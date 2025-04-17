@@ -10,7 +10,7 @@ import {
   TITLE_VALIDATION,
   USAGE_DETAIL_VALIDATION,
   USER_LIST_VALIDATION,
-} from "@/constants/postValidation";
+} from "@/constants/validation/postValidation";
 import { PostRequestType } from "@/types/post";
 import ImageUpload from "@/components/common/form/ImageUpload";
 import SelectTeam from "./category/SelectTeam";
@@ -34,7 +34,7 @@ const PostWriteForm = () => {
     uploadPost(postData);
   };
   return (
-    <div className="my-[64px]">
+    <>
       <PostNotice />
       <form
         className="flex flex-col gap-3 mt-3"
@@ -87,7 +87,7 @@ const PostWriteForm = () => {
           <Button content="등록하기" />
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

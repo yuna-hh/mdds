@@ -1,11 +1,14 @@
+import Loading from "@/components/common/status/Loading";
 import PostWriteForm from "@/components/features/board/posts/editor/PostWriteForm";
-import React from "react";
+import React, { Suspense } from "react";
 
 const PostWritePage = () => {
   return (
-    <>
-      <PostWriteForm />
-    </>
+    <Suspense fallback={<Loading />}>
+      <div className="pt-[64px]">
+        <PostWriteForm />
+      </div>
+    </Suspense>
   );
 };
 
