@@ -30,7 +30,6 @@ const ImageUpload = ({ control, errors }: ImageUploadProps) => {
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
 
-      console.log(preview);
       const formData = new FormData();
       formData.append("file", file);
 

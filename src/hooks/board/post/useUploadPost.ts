@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { Notify } from 'notiflix'
 
-const useUploadPost = () => {
+export default function useUploadPost(){
   const router = useRouter()
   const queryClient = useQueryClient()
   return useMutation({
@@ -25,5 +25,3 @@ const useUploadPost = () => {
     }
   })
 }
-
-export default useUploadPost
