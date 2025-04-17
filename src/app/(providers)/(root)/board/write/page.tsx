@@ -4,11 +4,11 @@ import React, { Suspense } from "react";
 
 const PostWritePage = () => {
   return (
-    <Suspense fallback={<Loading />}>
-      <div className="pt-[64px]">
-        <PostWriteForm />
-      </div>
-    </Suspense>
+    // <Suspense fallback={<Loading />}>
+    <div className="pt-[64px]">
+      <PostWriteForm />
+    </div>
+    // </Suspense>
   );
 };
 
