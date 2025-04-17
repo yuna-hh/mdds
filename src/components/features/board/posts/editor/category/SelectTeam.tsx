@@ -14,6 +14,7 @@ type SelectTeamProps = {
 const SelectTeam = ({ control, errors }: SelectTeamProps) => {
   const { data } = useGetCategory();
   if (!data) return <Loading />;
+
   const options = data.map((category) => {
     return {
       value: category.id,

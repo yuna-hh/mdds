@@ -20,7 +20,7 @@ const ImageUpload = ({ control, errors }: ImageUploadProps) => {
 
   const imageHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
-    onChange: (...event: any[]) => void
+    onChange: (...event: unknown[]) => void
   ) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -30,6 +30,7 @@ const ImageUpload = ({ control, errors }: ImageUploadProps) => {
       const previewUrl = URL.createObjectURL(file);
       setPreview(previewUrl);
 
+      console.log(preview);
       const formData = new FormData();
       formData.append("file", file);
 

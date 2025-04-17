@@ -35,7 +35,7 @@ export async function DELETE(
     .delete()
     .eq("id", postId )
 
-    if(error) return handleError("게시글 삭제를 실패했습니다")
+    if(error) return handleError("게시글 삭제를 실패하였습니다")
     handleSuccess("게시글 삭제가 완료되었습니다")
   } catch (error) {
     handleNetworkError()

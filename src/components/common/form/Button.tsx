@@ -1,5 +1,4 @@
 import throttle from "lodash.throttle";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Notiflix, { Notify } from "notiflix";
 import React, { ComponentProps, MouseEvent, useCallback } from "react";

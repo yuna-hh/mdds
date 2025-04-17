@@ -23,13 +23,23 @@ const PostContent = ({ postId }: { postId: string }) => {
         <span className="mr-1">[{team}]</span>
         <span>{title}</span>
       </div>
-      <div className="relative w-[418px] h-[400px] border border-main-1 rounded-lg">
+      {/* <div className="relative w-[418px] h-[400px] border border-main-1 rounded-lg">
         <Image
           src={img_url}
           fill
           alt="첨부된 이미지"
           priority
           className="rounded-lg"
+        />
+      </div> */}
+      <div className="relative border border-main-1 rounded-lg aspect-auto">
+        <Image
+          src={img_url}
+          alt="첨부된 이미지"
+          priority
+          className="rounded-lg object-cover"
+          width={418}
+          height={0}
         />
       </div>
       <div className="w-full p-[13px] border border-main-1 rounded-lg">
