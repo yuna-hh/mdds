@@ -4,10 +4,9 @@ import PostAction from "./PostAction";
 import { useGetPost } from "@/hooks/board/post/useGetPost";
 import Loading from "@/components/common/status/Loading";
 import Image from "next/image";
-
 const PostContent = ({ postId }: { postId: string }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const { data, isPending, isError } = useGetPost(postId);
+  const { data, isPending } = useGetPost(postId);
   if (!data) return <Loading />;
   if (isPending) return <Loading />;
   const {

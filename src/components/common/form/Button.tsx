@@ -1,6 +1,6 @@
 import throttle from "lodash.throttle";
 import { useRouter } from "next/navigation";
-import Notiflix, { Notify } from "notiflix";
+import Notiflix from "notiflix";
 import React, { ComponentProps, MouseEvent, useCallback } from "react";
 
 type ButtonProps = {
@@ -16,14 +16,7 @@ const bgColor = {
   option: "bg-main-2",
 };
 
-const Button = ({
-  content,
-  variant = "default",
-  href,
-  confirm,
-  onClick,
-  ...props
-}: ButtonProps) => {
+const Button = ({ content, variant = "default", href, confirm, onClick, ...props }: ButtonProps) => {
   const router = useRouter();
   const throttledClick = useCallback(
     throttle((event: MouseEvent<HTMLButtonElement>) => {
