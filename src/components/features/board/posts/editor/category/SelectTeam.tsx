@@ -1,21 +1,21 @@
-import Loading from "@/components/common/status/Loading";
-import { useGetCategory } from "@/hooks/board/post/useGetCategory";
-import { PostRequestType } from "@/types/post";
+import { PostRequestType, TeamsType } from "@/types/post";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import Select from "react-select";
 import { categoryStyle } from "./categoryStyle";
 import { TEAM_VALIDATION } from "@/constants/validation/postValidation";
+import { useGetCategory } from "@/hooks/board/post/useGetCategory";
+import Loading from "@/components/common/status/Loading";
 
 type SelectTeamProps = {
   control: Control<PostRequestType, string>;
   errors: FieldErrors<PostRequestType>;
+  categoryData: TeamsType[];
 };
 
-const SelectTeam = ({ control, errors }: SelectTeamProps) => {
-  const { data } = useGetCategory();
-  if (!data) return <Loading />;
+const SelectTeam = ({ control, errors, categoryData }: SelectTeamProps) => {
+  if (!categoryData) return <Loading />;
 
-  const options = data.map((category) => {
+  const options = categoryData.map((category) => {
     return {
       value: category.id,
       label: category.team,

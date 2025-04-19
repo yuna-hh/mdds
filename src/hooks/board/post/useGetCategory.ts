@@ -1,13 +1,12 @@
 import { getCategory } from '@/service/post'
 import { TeamsType } from '@/types/post'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 export function useGetCategory() {
-  const { data } = useSuspenseQuery<TeamsType[]>({
+  const { data, isPending, isError} = useQuery<TeamsType[]>({
     queryKey: ["category"],
-    queryFn: getCategory
-    
+    queryFn: getCategory,
   })
 
-  return { data }
+  return { data, isPending, isError}
 }
