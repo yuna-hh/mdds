@@ -1,6 +1,5 @@
 import { createClient } from '@/supabase/server';
 import { handleError, handleNetworkError, handleSuccess } from '@/utils/response/api';
-import { error } from 'console';
 import { NextRequest } from 'next/server';
 
 export async function GET(
@@ -36,7 +35,7 @@ export async function DELETE(
     .eq("id", postId )
 
     if(error) return handleError("게시글 삭제를 실패하였습니다")
-    handleSuccess("게시글 삭제가 완료되었습니다")
+    return handleSuccess("게시글 삭제가 완료되었습니다")
   } catch (error) {
     handleNetworkError()
     console.log(error)

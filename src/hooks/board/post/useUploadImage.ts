@@ -3,6 +3,6 @@ import { useMutation } from '@tanstack/react-query'
 
 export default function useUploadImage() {
   return useMutation({
-    mutationFn: async (imageFile: FormData) => uploadImage(imageFile)
+    mutationFn: async (imageFile: FormData) => uploadImage(imageFile),
   })
 }
