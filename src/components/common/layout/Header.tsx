@@ -14,14 +14,14 @@ const Header = () => {
       </Link>
       {user && <span>{user.user_metadata.display_name}님 환영합니다</span>}
       {user ? (
-        <div className="flex gap-[25px]">
-          <Link href={"/"}>글쓰기</Link>
+        <div className="flex items-center gap-[25px] text-[16px]">
+          <Link href={"/board/write"}>글쓰기</Link>
           <button className="cursor-pointer" onClick={handleLogout}>
             로그아웃
           </button>
         </div>
       ) : (
-        <div className="flex gap-10">
+        <div className="flex gap-10 text-[16px]">
           <Link href={"/login"}>로그인</Link>
           <Link href={"/join"}>회원가입</Link>
         </div>

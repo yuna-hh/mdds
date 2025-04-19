@@ -1,5 +1,6 @@
 import { createClient } from '@/supabase/server';
 import { handleError, handleNetworkError, handleSuccess } from '@/utils/response/api';
+import { error } from 'console';
 import { NextRequest } from 'next/server';
 
 export async function GET(
@@ -12,10 +13,32 @@ export async function GET(
     .from("posts")
     .select(`*, teams(team)`)
     .eq("id", postId)
+    .single()
 
     if(error) return handleError("데이터를 불러오는데 실패하였습니다")
     return handleSuccess(data)
   } catch (error) {
     return handleNetworkError()
+  }
+}
+
+
+export async function DELETE(
+  request: NextRequest,
+  {params} : {params: {postId: string}}
+) {
+  const supabase = await createClient()
+  const { postId } = await params
+  try {
+    const { error } = await supabase
+    .from("posts")
+    .delete()
+    .eq("id", postId )
+
+    if(error) return handleError("게시글 삭제를 실패했습니다")
+    handleSuccess("게시글 삭제가 완료되었습니다")
+  } catch (error) {
+    handleNetworkError()
+    console.log(error)
   }
 }

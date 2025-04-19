@@ -1,6 +1,6 @@
 import { createClient } from '@/supabase/server';
 import { getPaginationParams } from '@/utils/paginate/pagination';
-import { handleError, handleSuccess } from '@/utils/response/api';
+import { handleError, handleNetworkError, handleSuccess } from '@/utils/response/api';
 import { NextRequest } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -24,3 +24,4 @@ export async function GET(request: NextRequest) {
     return handleError("실패하였습니다")
   }
 }
+

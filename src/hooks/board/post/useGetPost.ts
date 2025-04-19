@@ -1,12 +1,12 @@
 import { getPost } from '@/service/post'
-import { PostDataType } from '@/types/post'
+import { PostResponseType } from '@/types/post'
 import { useQuery } from '@tanstack/react-query'
 
 export function useGetPost(postId: string) {
   const {data,
     isPending,
     isError
-  } = useQuery<PostDataType[]>({
+  } = useQuery<PostResponseType>({
     queryKey: ["postData", postId],
     queryFn: () => getPost(postId),
   })

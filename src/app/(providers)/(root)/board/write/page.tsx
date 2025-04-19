@@ -1,7 +1,12 @@
+import PostWriteForm from "@/components/features/board/posts/editor/PostWriteForm";
 import React from "react";
 
 const PostWritePage = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <PostWriteForm />
+    </>
+  );
 };
 
 export default PostWritePage;

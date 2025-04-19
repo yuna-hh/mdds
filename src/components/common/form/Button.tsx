@@ -1,11 +1,13 @@
 import throttle from "lodash.throttle";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Notiflix from "notiflix";
 import React, { ComponentProps, MouseEvent, useCallback } from "react";
 
 type ButtonProps = {
   content: string;
   variant?: "default" | "option";
   href?: string;
+  confirm?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 } & ComponentProps<"button">;
 
@@ -14,7 +16,8 @@ const bgColor = {
   option: "bg-main-2",
 };
 
-const Button = ({ content, variant = "default", href, onClick, ...props }: ButtonProps) => {
+const Button = ({ content, variant = "default", href, confirm, onClick, ...props }: ButtonProps) => {
+  const router = useRouter();
   const throttledClick = useCallback(
     throttle((event: MouseEvent<HTMLButtonElement>) => {
       if (onClick) {
@@ -28,9 +31,26 @@ const Button = ({ content, variant = "default", href, onClick, ...props }: Butto
   const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg cursor-pointer ${bgColor[variant]}`;
   if (href) {
     return (
-      <Link href={href} className={baseButtonStyle}>
+      <button
+        className={baseButtonStyle}
+        onClick={(e) => {
+          e.preventDefault();
+          Notiflix.Confirm.show(
+            "mmds",
+            `${confirm}`,
+            "Yes",
+            "No",
+            () => {
+              router.push(href);
+            },
+            () => {
+              return;
+            }
+          );
+        }}
+      >
         {content}
-      </Link>
+      </button>
     );
   }
   return (
