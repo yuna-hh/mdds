@@ -123,7 +123,6 @@ const PostForm = ({
             confirm="글 작성을 취소하시겠습니까?"
           />
           <Button content={isEdit ? "수정하기" : "등록하기"} />
-          {/* 수정 완료했을때는 해당 게시글 페이지로 이동할 수 있도록 수정 */}
         </div>
       </form>
     </>

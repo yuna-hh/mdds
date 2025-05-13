@@ -11,17 +11,19 @@ export default function useUpDatePost(){
     mutationFn: async ({postData, postId}: {postData: PostRequestType, postId: string}) => updatePost(postData, postId),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["postData"] })
+      queryClient.invalidateQueries({ queryKey: ["postList"] })
     },
-    onSuccess: (response) => {
-      if(response.message === "등록에 실패하였습니다") {
-        Notify.failure("게시글 등록에 실패하였습니다. 다시 시도해주세요")
+    onSuccess: (response, { postId }) => {
+      if(response.message === "게시글 수정을 실패하였습니다") {
+        Notify.failure("게시글 수정에 실패하였습니다. 다시 시도해주세요")
         return
       }
-      Notify.success("게시글 등록이 완료되었습니다")
-      router.push("/")
+      Notify.success("게시글 수정이 완료되었습니다")
+      router.push(`/board/detail/${postId}`)
+      // router.push(`/`)
     },
     onError: (error) => {
-      Notify.failure("게시물 등록 중 네트워크 오류가 발생하였습니다")
+      Notify.failure("게시물 수정 중 네트워크 오류가 발생하였습니다")
     }
   })
 }
