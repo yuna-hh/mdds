@@ -19,7 +19,7 @@ const PostContent = ({ postId }: { postId: string }) => {
     img_url,
   } = data;
   return (
-    <div className="flex flex-col items-center gap-[20px]">
+    <div className="flex flex-col items-center gap-[20px] w-full">
       <div className="w-full px-[18px] py-[13px] font-bold text-[18px] border border-main-1 bg-main-3 rounded-lg">
         <span className="mr-1">[{team}]</span>
         <span>{title}</span>
