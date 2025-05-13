@@ -48,3 +48,14 @@ export async function deletePost(postId: string) {
   })
   return response.json()
 }
+
+export async function updatePost(postData: PostRequestType, postId: string) {
+  const response = await fetch(`/api/board/post/${postId}`,{
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData)
+  })
+  return response.json()
+}

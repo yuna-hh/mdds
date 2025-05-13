@@ -10,32 +10,56 @@ import {
   USAGE_DETAIL_VALIDATION,
   USER_LIST_VALIDATION,
 } from "@/constants/validation/postValidation";
-import { PostRequestType, TeamsType } from "@/types/post";
+import { PostRequestType, PostResponseType, TeamsType } from "@/types/post";
 import ImageUpload from "@/components/common/form/ImageUpload";
 import SelectTeam from "./category/SelectTeam";
 import useUploadPost from "@/hooks/board/post/useUploadPost";
 import { User } from "@supabase/supabase-js";
+import useUpDatePost from "@/hooks/board/post/useUpdatePost";
 
 type PostWriteFormProps = {
   categoryData: TeamsType[];
   user: User | null;
+  postId?: string;
+  isEdit?: boolean;
+  prevPostData?: PostResponseType;
 };
 
-const PostWriteForm = ({ categoryData, user }: PostWriteFormProps) => {
+const PostForm = ({
+  categoryData,
+  user,
+  postId,
+  isEdit,
+  prevPostData,
+}: PostWriteFormProps) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<PostRequestType>();
+  } = useForm<PostRequestType>({
+    defaultValues:
+      isEdit && prevPostData
+        ? {
+            title: prevPostData.title,
+            usage_detail: prevPostData.usage_detail,
+            user_list: prevPostData.user_list,
+            price: prevPostData.price,
+            account: prevPostData.account,
+            team: prevPostData.team,
+            img_url: prevPostData.img_url,
+          }
+        : {},
+  });
 
   const { mutate: uploadPost } = useUploadPost();
+  const { mutate: updatePost } = useUpDatePost();
   const onSubmit = (data: PostRequestType) => {
     const postData = {
       ...data,
       author: user?.id as string,
     };
-    uploadPost(postData);
+    isEdit && postId ? updatePost({ postData, postId }) : uploadPost(postData);
   };
   return (
     <>
@@ -84,7 +108,13 @@ const PostWriteForm = ({ categoryData, user }: PostWriteFormProps) => {
           {...register("account", ACCOUNT_VALIDATION)}
           error={errors.account}
         />
-        <ImageUpload control={control} errors={errors} />
+        <ImageUpload
+          control={control}
+          errors={errors}
+          prevImageUrl={
+            isEdit && prevPostData ? prevPostData.img_url : undefined
+          }
+        />
         <div className="flex justify-center gap-[9px] mt-[38px] ">
           <Button
             href="/"
@@ -92,11 +122,12 @@ const PostWriteForm = ({ categoryData, user }: PostWriteFormProps) => {
             variant="option"
             confirm="글 작성을 취소하시겠습니까?"
           />
-          <Button content="등록하기" />
+          <Button content={isEdit ? "수정하기" : "등록하기"} />
+          {/* 수정 완료했을때는 해당 게시글 페이지로 이동할 수 있도록 수정 */}
         </div>
       </form>
     </>
   );
 };
 
-export default PostWriteForm;
+export default PostForm;

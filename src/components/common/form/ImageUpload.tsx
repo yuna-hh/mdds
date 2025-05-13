@@ -12,10 +12,11 @@ import { Control, Controller, FieldErrors } from "react-hook-form";
 type ImageUploadProps = {
   control: Control<PostRequestType, string>;
   errors: FieldErrors<PostRequestType>;
+  prevImageUrl?: string;
 };
 
-const ImageUpload = ({ control, errors }: ImageUploadProps) => {
-  const [preview, setPreview] = useState("");
+const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
+  const [preview, setPreview] = useState(prevImageUrl || "");
   const { mutate: uploadImage } = useUploadImage();
 
   const imageHandler = (
