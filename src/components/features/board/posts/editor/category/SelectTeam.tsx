@@ -23,7 +23,7 @@ const SelectTeam = ({ control, errors, categoryData }: SelectTeamProps) => {
   });
 
   return (
-    <>
+    <div>
       <div className="relative w-[225px]">
         <label className="absolute left-3 top-[8px] bg-white text-[14px] text-main-1 font-semibold z-10">
           항목
@@ -47,11 +47,11 @@ const SelectTeam = ({ control, errors, categoryData }: SelectTeamProps) => {
         />
       </div>
       {errors?.team && (
-        <span className="inline-block ml-[4px] mt-[2px] text-red">
+        <span className="inline-block ml-[4px] mt-[2px] text-[14px] text-red">
           {errors.team.message}
         </span>
       )}
-    </>
+    </div>
   );
 };
 

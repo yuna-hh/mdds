@@ -19,7 +19,6 @@ type ImageUploadProps = {
 const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
   const [preview, setPreview] = useState(prevImageUrl || "");
   const { mutate: uploadImage } = useUploadImage();
-  // const handleImageCompression = handleCompression()
 
   const imageHandler = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -27,10 +26,7 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
   ) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-
       if (!extensionValidation(file)) return;
-      console.log(file);
-      // const previewUrl = URL.createObjectURL(file);
       const { compressedImageUrl, compressedImage } = await handleCompression(
         file
       );

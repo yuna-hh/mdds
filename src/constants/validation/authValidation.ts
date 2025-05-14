@@ -26,6 +26,10 @@ export const USER_NAME_VALIDATION = {
     value: 2,
     message: "실명을 입력해주세요"
   },
+  maxLength: {
+    value: 6,
+    message: "최대 6자까지 입력 가능합니다"
+  }
 }
 
 export const PHONE_NUMBER_VALIDATION = {
