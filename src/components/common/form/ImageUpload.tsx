@@ -4,6 +4,7 @@ import {
   IMAGE_VALIDATION,
 } from "@/constants/validation/postValidation";
 import useUploadImage from "@/hooks/board/post/useUploadImage";
+import { handleCompression } from "@/hooks/useImageCompression";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -18,8 +19,9 @@ type ImageUploadProps = {
 const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
   const [preview, setPreview] = useState(prevImageUrl || "");
   const { mutate: uploadImage } = useUploadImage();
+  // const handleImageCompression = handleCompression()
 
-  const imageHandler = (
+  const imageHandler = async (
     e: React.ChangeEvent<HTMLInputElement>,
     onChange: (...event: unknown[]) => void
   ) => {
@@ -27,12 +29,15 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
       const file = e.target.files[0];
 
       if (!extensionValidation(file)) return;
-
-      const previewUrl = URL.createObjectURL(file);
-      setPreview(previewUrl);
+      console.log(file);
+      // const previewUrl = URL.createObjectURL(file);
+      const { compressedImageUrl, compressedImage } = await handleCompression(
+        file
+      );
+      setPreview(compressedImageUrl);
 
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", compressedImage as File);
 
       uploadImage(formData, {
         onSuccess: (data) => {
