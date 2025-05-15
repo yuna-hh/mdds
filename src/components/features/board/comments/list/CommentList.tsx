@@ -3,6 +3,7 @@
 import Loading from "@/components/common/status/Loading";
 import { useGetComments } from "@/hooks/board/post/ comments/useGetComments";
 import Comment from "./Comment";
+import Empty from "@/components/common/status/Empty";
 
 const CommentList = ({ postId }: { postId: string }) => {
   const { data: comments, isPending, isError } = useGetComments(postId);
@@ -10,9 +11,13 @@ const CommentList = ({ postId }: { postId: string }) => {
   if (isPending) return <Loading />;
 
   return (
-    <div className="mt-[25px]">
+    <div className="w-full mt-[25px] mb-[50px]">
       <span className="font-bold">댓글 {comments.length || 0}</span>
-      {comments.length > 0 && <Comment comments={comments} />}
+      {comments.length > 0 ? (
+        <Comment comments={comments} />
+      ) : (
+        <Empty content="댓글" />
+      )}
     </div>
   );
 };
