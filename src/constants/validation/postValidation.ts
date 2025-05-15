@@ -52,7 +52,7 @@ export const IMAGE_VALIDATION ={
 }
 
 export const extensionValidation = (file: File) => {
-  const extensions = ["image/jpeg", "image/jpg", "image/png", "image/webp"]
+  const extensions = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/heic"]
   if(!extensions.includes(file.type)) {
     Notify.failure("지원되는 이미지 파일 형식은 jpg, jpeg, png, heic, webp입니다")
     return false
