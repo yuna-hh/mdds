@@ -4,13 +4,16 @@ import PostAction from "./PostAction";
 import { useGetPost } from "@/hooks/board/post/useGetPost";
 import Loading from "@/components/common/status/Loading";
 import Image from "next/image";
+import { authStore } from "@/zustand/authStore";
 const PostContent = ({ postId }: { postId: string }) => {
+  const { user } = authStore();
   const [isLoading, setIsLoading] = useState(true);
   const { data, isPending } = useGetPost(postId);
   if (!data) return <Loading />;
   if (isPending) return <Loading />;
   const {
     teams: { team },
+    author,
     title,
     usage_detail,
     price,
@@ -45,7 +48,7 @@ const PostContent = ({ postId }: { postId: string }) => {
           <li>명단 / 인원수 : {user_list}</li>
           <li>입금계좌: {account}</li>
         </ul>
-        <PostAction postId={postId} />
+        {user === author && <PostAction postId={postId} />}
       </div>
     </div>
   );

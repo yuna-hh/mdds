@@ -12,7 +12,7 @@ const CommentList = ({ postId }: { postId: string }) => {
 
   return (
     <div className="w-full mt-[25px] mb-[50px]">
-      <span className="font-bold">댓글 {comments.length || 0}</span>
+      <span className="font-bold">댓글 {comments.length}</span>
       {comments.length > 0 ? (
         <Comment comments={comments} />
       ) : (
