@@ -31,7 +31,7 @@ export const categoryStyle: StylesConfig<Option, false> = {
     ...base,
     color: `${colors.main2}`,
     fontSize: "18px",
-    fontWeight: 700,
+    fontWeight: 400,
   }),
   valueContainer: (base) => ({ // 카테고리 input 부분
     ...base,

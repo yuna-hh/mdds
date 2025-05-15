@@ -1,11 +1,10 @@
-import PostWriteForm from "@/components/features/board/posts/editor/PostWriteForm";
-import React from "react";
+import PostEditor from "@/components/features/board/posts/editor/PostEditor";
 
 const PostWritePage = () => {
   return (
-    <>
-      <PostWriteForm />
-    </>
+    <div className="pt-[64px]">
+      <PostEditor />
+    </div>
   );
 };
 

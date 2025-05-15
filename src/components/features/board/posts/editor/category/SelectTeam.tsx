@@ -1,20 +1,21 @@
-import Loading from "@/components/common/status/Loading";
-import { useGetCategory } from "@/hooks/board/post/useGetCategory";
-import { PostRequestType } from "@/types/post";
+import { PostRequestType, TeamsType } from "@/types/post";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 import Select from "react-select";
 import { categoryStyle } from "./categoryStyle";
-import { TEAM_VALIDATION } from "@/constants/postValidation";
+import { TEAM_VALIDATION } from "@/constants/validation/postValidation";
+import { useGetCategory } from "@/hooks/board/post/useGetCategory";
+import Loading from "@/components/common/status/Loading";
 
 type SelectTeamProps = {
   control: Control<PostRequestType, string>;
   errors: FieldErrors<PostRequestType>;
+  categoryData: TeamsType[];
 };
 
-const SelectTeam = ({ control, errors }: SelectTeamProps) => {
-  const { data } = useGetCategory();
-  if (!data) return <Loading />;
-  const options = data.map((category) => {
+const SelectTeam = ({ control, errors, categoryData }: SelectTeamProps) => {
+  if (!categoryData) return <Loading />;
+
+  const options = categoryData.map((category) => {
     return {
       value: category.id,
       label: category.team,
@@ -22,7 +23,7 @@ const SelectTeam = ({ control, errors }: SelectTeamProps) => {
   });
 
   return (
-    <>
+    <div>
       <div className="relative w-[225px]">
         <label className="absolute left-3 top-[8px] bg-white text-[14px] text-main-1 font-semibold z-10">
           항목
@@ -46,11 +47,11 @@ const SelectTeam = ({ control, errors }: SelectTeamProps) => {
         />
       </div>
       {errors?.team && (
-        <span className="inline-block ml-[4px] mt-[2px] text-red">
+        <span className="inline-block ml-[4px] mt-[2px] text-[14px] text-red">
           {errors.team.message}
         </span>
       )}
-    </>
+    </div>
   );
 };
 

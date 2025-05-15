@@ -4,7 +4,7 @@ import PostList from "@/components/features/board/posts/list/PostList";
 // export const revalidate = 0
 const MainPage = () => {
   return (
-    <div className="w-full">
+    <div className="w-full pt-[73px]">
       <ListHeader />
       <PostList />
     </div>

@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { Notify } from 'notiflix';
 
 // export function handleError(message: string): never {
 //   console.error("데이터 조회 실패:");

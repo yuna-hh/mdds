@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="mim-h-screen">
+      <body className="min-h-screen">
         <QueryProvider>
           <NotiflixProvider>
             <main>{children}</main>

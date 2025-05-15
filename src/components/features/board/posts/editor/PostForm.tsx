@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import PostNotice from "./PostNotice";
 import { useForm } from "react-hook-form";
 import Input from "@/components/common/form/Input";
@@ -10,37 +9,70 @@ import {
   TITLE_VALIDATION,
   USAGE_DETAIL_VALIDATION,
   USER_LIST_VALIDATION,
-} from "@/constants/postValidation";
-import { PostRequestType } from "@/types/post";
+} from "@/constants/validation/postValidation";
+import { PostRequestType, PostResponseType, TeamsType } from "@/types/post";
 import ImageUpload from "@/components/common/form/ImageUpload";
 import SelectTeam from "./category/SelectTeam";
 import useUploadPost from "@/hooks/board/post/useUploadPost";
-import { authStore } from "@/zustand/authStore";
+import { User } from "@supabase/supabase-js";
+import useUpDatePost from "@/hooks/board/post/useUpdatePost";
 
-const PostWriteForm = () => {
+type PostWriteFormProps = {
+  categoryData: TeamsType[];
+  user: User | null;
+  postId?: string;
+  isEdit?: boolean;
+  prevPostData?: PostResponseType;
+};
+
+const PostForm = ({
+  categoryData,
+  user,
+  postId,
+  isEdit,
+  prevPostData,
+}: PostWriteFormProps) => {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<PostRequestType>();
+  } = useForm<PostRequestType>({
+    defaultValues:
+      isEdit && prevPostData
+        ? {
+            title: prevPostData.title,
+            usage_detail: prevPostData.usage_detail,
+            user_list: prevPostData.user_list,
+            price: prevPostData.price,
+            account: prevPostData.account,
+            team: prevPostData.team,
+            img_url: prevPostData.img_url,
+          }
+        : {},
+  });
+
   const { mutate: uploadPost } = useUploadPost();
-  const { user } = authStore();
+  const { mutate: updatePost } = useUpDatePost();
   const onSubmit = (data: PostRequestType) => {
     const postData = {
       ...data,
       author: user?.id as string,
     };
-    uploadPost(postData);
+    isEdit && postId ? updatePost({ postData, postId }) : uploadPost(postData);
   };
   return (
-    <div className="my-[64px]">
+    <>
       <PostNotice />
       <form
         className="flex flex-col gap-3 mt-3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <SelectTeam control={control} errors={errors} />
+        <SelectTeam
+          control={control}
+          errors={errors}
+          categoryData={categoryData}
+        />
         <Input
           label="제목"
           type="text"
@@ -76,7 +108,13 @@ const PostWriteForm = () => {
           {...register("account", ACCOUNT_VALIDATION)}
           error={errors.account}
         />
-        <ImageUpload control={control} errors={errors} />
+        <ImageUpload
+          control={control}
+          errors={errors}
+          prevImageUrl={
+            isEdit && prevPostData ? prevPostData.img_url : undefined
+          }
+        />
         <div className="flex justify-center gap-[9px] mt-[38px] ">
           <Button
             href="/"
@@ -84,11 +122,11 @@ const PostWriteForm = () => {
             variant="option"
             confirm="글 작성을 취소하시겠습니까?"
           />
-          <Button content="등록하기" />
+          <Button content={isEdit ? "수정하기" : "등록하기"} />
         </div>
       </form>
-    </div>
+    </>
   );
 };
 
-export default PostWriteForm;
+export default PostForm;

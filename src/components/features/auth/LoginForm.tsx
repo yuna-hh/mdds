@@ -4,7 +4,7 @@ import Input from "@/components/common/form/Input";
 import {
   EMAIL_VALIDATION,
   PASSWORD_VALIDATION,
-} from "@/constants/authValidation";
+} from "@/constants/validation/authValidation";
 import { useSubmitLogin } from "@/hooks/auth/useSubmitLogin";
 import { LoginType } from "@/types/auth";
 import React from "react";

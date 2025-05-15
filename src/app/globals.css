@@ -71,6 +71,6 @@ input:focus {
 }
 
 input::placeholder {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-main-2);
 }

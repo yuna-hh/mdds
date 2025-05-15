@@ -1,5 +1,5 @@
 "use client";
-import { POLICY_VALIDATION } from "@/constants/authValidation";
+import { POLICY_VALIDATION } from "@/constants/validation/authValidation";
 import { JoinDataType } from "@/types/auth";
 import Image from "next/image";
 import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";

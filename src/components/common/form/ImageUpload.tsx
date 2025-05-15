@@ -2,8 +2,9 @@
 import {
   extensionValidation,
   IMAGE_VALIDATION,
-} from "@/constants/postValidation";
+} from "@/constants/validation/postValidation";
 import useUploadImage from "@/hooks/board/post/useUploadImage";
+import { handleCompression } from "@/hooks/useImageCompression";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -12,31 +13,32 @@ import { Control, Controller, FieldErrors } from "react-hook-form";
 type ImageUploadProps = {
   control: Control<PostRequestType, string>;
   errors: FieldErrors<PostRequestType>;
+  prevImageUrl?: string;
 };
 
-const ImageUpload = ({ control, errors }: ImageUploadProps) => {
-  const [preview, setPreview] = useState("");
+const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
+  const [preview, setPreview] = useState(prevImageUrl || "");
   const { mutate: uploadImage } = useUploadImage();
 
-  const imageHandler = (
+  const imageHandler = async (
     e: React.ChangeEvent<HTMLInputElement>,
-    onChange: (...event: any[]) => void
+    onChange: (...event: unknown[]) => void
   ) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-
       if (!extensionValidation(file)) return;
-
-      const previewUrl = URL.createObjectURL(file);
-      setPreview(previewUrl);
+      const { compressedImageUrl, compressedImage } = await handleCompression(
+        file
+      );
+      setPreview(compressedImageUrl);
 
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", compressedImage as File);
 
       uploadImage(formData, {
         onSuccess: (data) => {
           onChange(
-            `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}/${data.data}`
+            `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}board//${data.data}`
           );
         },
       });

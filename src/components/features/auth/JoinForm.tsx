@@ -7,7 +7,7 @@ import {
   PASSWORD_VALIDATION,
   PHONE_NUMBER_VALIDATION,
   USER_NAME_VALIDATION,
-} from "@/constants/authValidation";
+} from "@/constants/validation/authValidation";
 import { useSubmitJoin } from "@/hooks/auth/useSubmitJoin";
 import { JoinDataType } from "@/types/auth";
 import React, { useState } from "react";
