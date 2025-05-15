@@ -39,6 +39,8 @@ export type PostRequestType = Omit <Tables<"posts">,"created_at" | "id">
 
 export type TeamsType = Tables<"teams">
 
+export type CommentsResponseType = Tables<"comments"> & {author: Pick<Tables<"user">, "name">}
+
 // export type PostResponseType = {
 //   account: string;
 //     author: string | null;
