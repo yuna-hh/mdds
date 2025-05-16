@@ -15,18 +15,21 @@ export type Database = {
           content: string
           created_at: string
           id: string
+          post_id: string
         }
         Insert: {
           author: string
           content: string
           created_at?: string
           id?: string
+          post_id: string
         }
         Update: {
           author?: string
           content?: string
           created_at?: string
           id?: string
+          post_id?: string
         }
         Relationships: [
           {
@@ -36,12 +39,19 @@ export type Database = {
             referencedRelation: "user"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
         ]
       }
       posts: {
         Row: {
           account: string
-          author: string | null
+          author: string
           created_at: string
           id: string
           img_url: string
@@ -53,7 +63,7 @@ export type Database = {
         }
         Insert: {
           account: string
-          author?: string | null
+          author: string
           created_at?: string
           id?: string
           img_url: string
@@ -65,7 +75,7 @@ export type Database = {
         }
         Update: {
           account?: string
-          author?: string | null
+          author?: string
           created_at?: string
           id?: string
           img_url?: string
