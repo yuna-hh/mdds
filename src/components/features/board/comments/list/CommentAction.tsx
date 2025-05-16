@@ -3,8 +3,8 @@ import { memo } from "react";
 function CommentAction({ commentId }: { commentId: string }) {
   return (
     <div className="flex justify-end gap-[14px] mt-[22px] font-bold">
-      <button className="cursor-pointer">수정</button>
-      <button className="cursor-pointer">삭제</button>
+      <button>수정</button>
+      <button>삭제</button>
     </div>
     // <ul className="flex items-center font-bold gap-[14px]">
     //   <li>

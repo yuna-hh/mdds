@@ -1,11 +1,11 @@
-import { CommentsResponseType } from "@/types/post";
+import { CommentsResponseType } from "@/types/comment";
 import CommentAction from "./CommentAction";
 import { authStore } from "@/zustand/authStore";
 
 function Comment({ comments }: { comments: CommentsResponseType[] }) {
   const { user } = authStore();
   return (
-    <ul className="flex flex-col justify-center items-center gap-3 mt-3">
+    <ul className="flex flex-col justify-center items-center gap-3">
       {comments.map((comment) => (
         <li
           key={comment.id}

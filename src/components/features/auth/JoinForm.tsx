@@ -87,11 +87,7 @@ const JoinForm = () => {
       />
       <div className="flex flex-row justify-between w-full mb-10 text-[14px]">
         <PolicyForm register={register} watch={watch} errors={errors} />
-        <button
-          type="button"
-          onClick={handlePolicyOpen}
-          className="underline cursor-pointer"
-        >
+        <button type="button" onClick={handlePolicyOpen} className="underline">
           보기
         </button>
         {isOpen && <Policy isOpen={isOpen} setIsOpen={setIsOpen} />}
