@@ -1,6 +1,6 @@
 "use client"
 
-import { getComments } from '@/service/post'
+import { getComments } from '@/service/comment'
 import { CommentsResponseType } from '@/types/post'
 import { useQuery } from '@tanstack/react-query'
 

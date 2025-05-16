@@ -9,7 +9,7 @@ export async function GET(_: NextRequest,
   try{
     const { data, error } = await supabase
     .from("comments")
-    .select(`*,author(name)`)
+    .select(`*, user(name)`)
     .eq("post_id", postId)
 
     if(error) return handleError("데이터를 불러오는데 실패하였습니다")

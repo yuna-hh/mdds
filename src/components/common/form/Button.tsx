@@ -66,6 +66,7 @@ const Button = ({
       </Link>
     );
   }
+
   return (
     <button className={baseButtonStyle} onClick={throttledClick} {...props}>
       {content}

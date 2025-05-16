@@ -48,7 +48,7 @@ const PostContent = ({ postId }: { postId: string }) => {
           <li>명단 / 인원수 : {user_list}</li>
           <li>입금계좌: {account}</li>
         </ul>
-        {user === author && <PostAction postId={postId} />}
+        {user?.id === author && <PostAction postId={postId} />}
       </div>
     </div>
   );
