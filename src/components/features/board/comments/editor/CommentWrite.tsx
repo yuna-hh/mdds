@@ -1,19 +1,36 @@
 "use client";
+import { COMMENT_VALIDATION } from "@/constants/validation/commentValidation";
+import { useUploadComment } from "@/hooks/board/comment/useUploadComment";
+import { useThrottledClick } from "@/hooks/common/useThrottledClick";
 import { CommentsRequestType } from "@/types/comment";
 import { authStore } from "@/zustand/authStore";
-import React from "react";
 import { useForm } from "react-hook-form";
 
-const CommentWrite = () => {
+const CommentWrite = ({ postId }: { postId: string }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<CommentsRequestType>();
+  } = useForm<CommentsRequestType>({
+    mode: "onChange",
+  });
   const { user } = authStore();
-  console.log(user);
+  const { mutate: uploadComment } = useUploadComment(postId);
+  const handleThrottleClick = useThrottledClick();
+  const onSubmit = (data: CommentsRequestType) => {
+    const commentData = {
+      ...data,
+      author: user?.id as string,
+    };
+    uploadComment(commentData);
+    reset({ content: "" });
+  };
   return (
-    <form className="flex flex-row border border-main-1 rounded-lg">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-row border border-main-1 rounded-lg"
+    >
       <div className="flex flex-col grow-6 py-3 px-4">
         <span className="font-semibold mb-[10px]">
           {user?.user_metadata.display_name}
@@ -22,10 +39,15 @@ const CommentWrite = () => {
           id=""
           placeholder="댓글을 작성해주세요"
           className="grow-1 outline-none resize-none"
-          {...register("content")}
+          {...register("content", COMMENT_VALIDATION)}
         />
       </div>
-      <button className="grow-1 py-[55px] border-l border-main-1 font-bold">
+      <button
+        onClick={handleThrottleClick}
+        type="submit"
+        className="grow-1 py-[55px] border-l border-main-1 font-bold disabled:cursor-not-allowed! disabled:text-gray-1"
+        disabled={errors?.content ? true : false}
+      >
         등록
       </button>
     </form>

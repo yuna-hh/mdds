@@ -20,7 +20,7 @@ const PostEditor = ({ postId, isEdit }: PostWriteType) => {
   const { data: prevPostData } = useGetPost(postId);
 
   useEffect(() => {
-    if (prevPostData && user !== prevPostData.author) {
+    if (prevPostData && user?.id !== prevPostData.author) {
       Notify.failure("비정상적인 접근입니다");
       router.push("/");
     }

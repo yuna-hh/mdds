@@ -1,13 +1,13 @@
 "use client";
 
 import Loading from "@/components/common/status/Loading";
-import { useGetComments } from "@/hooks/board/post/ comments/useGetComments";
+import { useGetComment } from "@/hooks/board/comment/useGetComment";
 import Comment from "./Comment";
 import Empty from "@/components/common/status/Empty";
 import CommentWrite from "../editor/CommentWrite";
 
 const CommentList = ({ postId }: { postId: string }) => {
-  const { data: comments, isPending, isError } = useGetComments(postId);
+  const { data: comments, isPending, isError } = useGetComment(postId);
   if (!comments) return <Loading />;
   if (isPending) return <Loading />;
 
@@ -19,7 +19,7 @@ const CommentList = ({ postId }: { postId: string }) => {
       ) : (
         <Empty content="댓글" />
       )}
-      <CommentWrite />
+      <CommentWrite postId={postId} />
     </div>
   );
 };
