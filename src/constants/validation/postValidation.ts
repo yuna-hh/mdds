@@ -1,11 +1,14 @@
 import { Notify } from 'notiflix'
+import { CHECK_EMPTY } from './common'
 
 export const TITLE_VALIDATION ={
   required: "제목을 입력해주세요",
   maxLength: {
     value: 70,
     message: "최대 70자까지 입력 가능합니다"
-  }
+  },
+  ...CHECK_EMPTY
+  
 }
 
 export const USAGE_DETAIL_VALIDATION ={
@@ -13,7 +16,8 @@ export const USAGE_DETAIL_VALIDATION ={
   maxLength: {
     value: 500,
     message: "최대 500자까지 입력 가능합니다"
-  }
+  },
+  ...CHECK_EMPTY
 }
 
 export const USER_LIST_VALIDATION ={
@@ -21,7 +25,8 @@ export const USER_LIST_VALIDATION ={
   maxLength: {
     value: 100,
     message: "최대 100자까지 입력 가능합니다"
-  }
+  },
+  ...CHECK_EMPTY
 }
 
 export const PRICE_VALIDATION ={
@@ -38,7 +43,8 @@ export const ACCOUNT_VALIDATION ={
   maxLength: {
     value: 50,
     message: "최대 50자까지 입력 가능합니다"
-  }
+  },
+  ...CHECK_EMPTY
 }
 
 

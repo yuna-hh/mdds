@@ -37,7 +37,7 @@ const Button = ({
   );
 
   // 추후에 스타일 보면서 변경하기
-  const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg cursor-pointer ${bgColor[variant]}`;
+  const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg ${bgColor[variant]}`;
   if (href) {
     return confirm ? (
       <button
@@ -66,6 +66,7 @@ const Button = ({
       </Link>
     );
   }
+
   return (
     <button className={baseButtonStyle} onClick={throttledClick} {...props}>
       {content}

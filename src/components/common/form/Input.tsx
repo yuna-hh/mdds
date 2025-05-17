@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useId } from "react";
 import { FieldError } from "react-hook-form";
 

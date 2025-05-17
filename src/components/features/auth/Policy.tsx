@@ -65,7 +65,7 @@ const Policy = ({ isOpen, setIsOpen }: PolicyPropsType) => {
         <button
           type="button"
           onClick={handleClose}
-          className="w-full py-[17px] font-bold text-lg text-white bg-main-1 cursor-pointer"
+          className="w-full py-[17px] font-bold text-lg text-white bg-main-1"
         >
           닫기
         </button>

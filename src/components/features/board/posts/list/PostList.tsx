@@ -15,7 +15,9 @@ const PostList = () => {
   if (isPending) return <Loading />;
   return (
     <>
-      {postListData?.data && postListData.data.length === 0 && <Empty />}
+      {postListData?.data && postListData.data.length === 0 && (
+        <Empty content="게시글" />
+      )}
       <ul className="mt-3 border border-main-1 rounded-[8px] border-not-last">
         {postListData?.data.map((post, index) => (
           <li key={post.id}>

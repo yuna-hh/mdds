@@ -7,9 +7,7 @@ const PostAction = ({ postId }: { postId: string }) => {
   return (
     <div className="flex justify-end gap-[14px] mt-[22px] font-bold">
       <Link href={`/board/edit/${postId}`}>수정</Link>
-      <button className="cursor-pointer" onClick={handleDeletePost}>
-        삭제
-      </button>
+      <button onClick={handleDeletePost}>삭제</button>
     </div>
   );
 };
