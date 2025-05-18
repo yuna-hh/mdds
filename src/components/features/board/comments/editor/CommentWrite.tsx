@@ -4,29 +4,32 @@ import { useUploadComment } from "@/hooks/board/comment/useUploadComment";
 import { useThrottledClick } from "@/hooks/common/useThrottledClick";
 import { CommentsRequestType } from "@/types/comment";
 import { authStore } from "@/zustand/authStore";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 
 const CommentWrite = ({ postId }: { postId: string }) => {
   const {
     register,
     handleSubmit,
     reset,
-    watch,
-    formState: { errors, isValid, isSubmitting },
+    control,
+    formState: { isValid, isSubmitting },
   } = useForm<CommentsRequestType>({
     mode: "onChange",
+    defaultValues: {
+      content: "",
+    },
   });
   const { user } = authStore();
   const { mutate: uploadComment } = useUploadComment(postId);
   const handleThrottleClick = useThrottledClick();
-  const content = watch("content");
+  const contentValue = useWatch({ control, name: "content" });
   const onSubmit = (data: CommentsRequestType) => {
     const commentData = {
       ...data,
       author: user?.id as string,
     };
     uploadComment(commentData);
-    reset({ content: " " });
+    reset({ content: "" });
   };
   return (
     <form
@@ -38,11 +41,11 @@ const CommentWrite = ({ postId }: { postId: string }) => {
           {user?.user_metadata.display_name}
         </span>
         <textarea
-          id=""
           placeholder="댓글을 작성해주세요"
           className="grow-1 outline-none resize-none"
           {...register("content", COMMENT_VALIDATION)}
         />
+        <span className="ml-auto text-sm">{`${contentValue.length} / 500`}</span>
       </div>
       <button
         onClick={handleThrottleClick}
