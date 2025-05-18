@@ -1,19 +1,18 @@
+import { useDeleteComment } from "@/hooks/board/comment/useDeleteComment";
 import { memo } from "react";
 
-function CommentAction({ commentId }: { commentId: string }) {
+type CommentActionProps = {
+  postId: string;
+  commentId: string;
+};
+
+function CommentAction({ postId, commentId }: CommentActionProps) {
+  const { handleDeleteComment } = useDeleteComment({ postId, commentId });
   return (
     <div className="flex justify-end gap-[14px] mt-[22px] font-bold">
       <button>수정</button>
-      <button>삭제</button>
+      <button onClick={handleDeleteComment}>삭제</button>
     </div>
-    // <ul className="flex items-center font-bold gap-[14px]">
-    //   <li>
-    //     <button>수정</button>
-    //   </li>
-    //   <li>
-    //     <button>삭제</button>
-    //   </li>
-    // </ul>
   );
 }
 
