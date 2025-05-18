@@ -16,7 +16,7 @@ function Comment({ comments }: { comments: CommentsResponseType[] }) {
           </span>
           <p>{comment.content}</p>
           {user?.id === comment.author && (
-            <CommentAction commentId={comment.id} />
+            <CommentAction postId={comment.post_id} commentId={comment.id} />
           )}
         </li>
       ))}

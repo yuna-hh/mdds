@@ -11,20 +11,25 @@ const CommentWrite = ({ postId }: { postId: string }) => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<CommentsRequestType>({
     mode: "onChange",
+    defaultValues: {
+      content: "",
+    },
   });
   const { user } = authStore();
   const { mutate: uploadComment } = useUploadComment(postId);
   const handleThrottleClick = useThrottledClick();
+  const content = watch("content");
   const onSubmit = (data: CommentsRequestType) => {
     const commentData = {
       ...data,
       author: user?.id as string,
     };
     uploadComment(commentData);
-    reset({ content: "" });
+    reset({ content: " " });
   };
   return (
     <form
@@ -46,7 +51,7 @@ const CommentWrite = ({ postId }: { postId: string }) => {
         onClick={handleThrottleClick}
         type="submit"
         className="grow-1 py-[55px] border-l border-main-1 font-bold disabled:cursor-not-allowed! disabled:text-gray-1"
-        disabled={errors?.content ? true : false}
+        disabled={!content || !!errors.content}
       >
         등록
       </button>
