@@ -12,12 +12,9 @@ const CommentWrite = ({ postId }: { postId: string }) => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors },
+    formState: { errors, isValid, isSubmitting },
   } = useForm<CommentsRequestType>({
     mode: "onChange",
-    defaultValues: {
-      content: "",
-    },
   });
   const { user } = authStore();
   const { mutate: uploadComment } = useUploadComment(postId);
@@ -51,7 +48,7 @@ const CommentWrite = ({ postId }: { postId: string }) => {
         onClick={handleThrottleClick}
         type="submit"
         className="grow-1 py-[55px] border-l border-main-1 font-bold disabled:cursor-not-allowed! disabled:text-gray-1"
-        disabled={!content || !!errors.content}
+        disabled={!isValid || isSubmitting}
       >
         등록
       </button>
