@@ -4,7 +4,7 @@ import { memo, useState } from "react";
 type CommentActionProps = {
   postId: string;
   commentId: string;
-  handleChangeMode: (id: string) => void;
+  handleChangeMode?: (id: string) => void;
 };
 
 function CommentAction({
@@ -15,7 +15,7 @@ function CommentAction({
   const [mode, setMode] = useState(false);
   const { handleDeleteComment } = useDeleteComment({ postId, commentId });
   const handleChange = (commentId: string) => {
-    handleChangeMode(commentId);
+    handleChangeMode && handleChangeMode(commentId);
     setMode(!mode);
   };
   return (

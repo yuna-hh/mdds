@@ -54,9 +54,16 @@ const CommentWrite = ({
       className="flex flex-row w-full border border-main-1 rounded-lg"
     >
       <div className="flex flex-col grow-6 py-3 px-4">
-        <span className="font-semibold mb-[10px]">
-          {user?.user_metadata.display_name}
-        </span>
+        <div className="flex flex-row justify-between">
+          <span className="font-semibold mb-[10px]">
+            {user?.user_metadata.display_name}
+          </span>
+          {handleChangeMode && (
+            <button type="button" onClick={() => handleChangeMode("")}>
+              x
+            </button>
+          )}
+        </div>
         <textarea
           placeholder="댓글을 작성해주세요"
           className="grow-1 outline-none resize-none"
@@ -70,7 +77,7 @@ const CommentWrite = ({
         className="grow-1 py-[55px] border-l border-main-1 font-bold disabled:cursor-not-allowed! disabled:text-gray-1"
         disabled={!isValid || isSubmitting}
       >
-        등록
+        {comment ? "수정" : "등록"}
       </button>
     </form>
   );
