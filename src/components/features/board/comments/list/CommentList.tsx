@@ -5,6 +5,7 @@ import { useGetComment } from "@/hooks/board/comment/useGetComment";
 import Comment from "./Comment";
 import Empty from "@/components/common/status/Empty";
 import CommentWrite from "../editor/CommentWrite";
+import { useState } from "react";
 
 const CommentList = ({ postId }: { postId: string }) => {
   const { data: comments, isPending, isError } = useGetComment(postId);
@@ -15,7 +16,7 @@ const CommentList = ({ postId }: { postId: string }) => {
     <div className="flex flex-col gap-3 w-full mt-[25px] mb-[50px]">
       <span className="font-bold">댓글 {comments.length}</span>
       {comments.length > 0 ? (
-        <Comment comments={comments} />
+        <Comment comments={comments} postId={postId} />
       ) : (
         <Empty content="댓글" />
       )}

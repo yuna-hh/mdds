@@ -1,5 +1,4 @@
 import { CommentsRequestType } from '@/types/comment'
-import { PostRequestType } from '@/types/post';
 
 type commentProps = {
   postId: string;
@@ -30,7 +29,7 @@ export async function uploadComment(commentData: CommentsRequestType, postId: st
   return response.json()
 }
 
-export async function updateComment(postId: string, commentId: string, commentData: PostRequestType ) {
+export async function updateComment(postId: string, commentId: string, commentData: CommentsRequestType ) {
   const response = await fetch(`/api/board/post/comments/${postId}/${commentId}`,{
     method: "PATCH",
     headers: {

@@ -2,11 +2,23 @@
 import { COMMENT_VALIDATION } from "@/constants/validation/commentValidation";
 import { useUploadComment } from "@/hooks/board/comment/useUploadComment";
 import { useThrottledClick } from "@/hooks/common/useThrottledClick";
-import { CommentsRequestType } from "@/types/comment";
+import { CommentsRequestType, CommentsResponseType } from "@/types/comment";
 import { authStore } from "@/zustand/authStore";
 import { useForm, useWatch } from "react-hook-form";
+import CommentAction from "../list/CommentAction";
+import { useUpdateComment } from "@/hooks/board/comment/useUpdateComment";
 
-const CommentWrite = ({ postId }: { postId: string }) => {
+type CommentWriteProps = {
+  postId: string;
+  comment?: CommentsResponseType;
+  handleChangeMode?: (id: string) => void;
+};
+
+const CommentWrite = ({
+  postId,
+  comment,
+  handleChangeMode,
+}: CommentWriteProps) => {
   const {
     register,
     handleSubmit,
@@ -16,11 +28,15 @@ const CommentWrite = ({ postId }: { postId: string }) => {
   } = useForm<CommentsRequestType>({
     mode: "onChange",
     defaultValues: {
-      content: "",
+      content: comment?.content || "",
     },
   });
   const { user } = authStore();
   const { mutate: uploadComment } = useUploadComment(postId);
+  const { mutate: updateComment } = useUpdateComment(
+    postId,
+    comment?.id as string
+  );
   const handleThrottleClick = useThrottledClick();
   const contentValue = useWatch({ control, name: "content" });
   const onSubmit = (data: CommentsRequestType) => {
@@ -28,13 +44,14 @@ const CommentWrite = ({ postId }: { postId: string }) => {
       ...data,
       author: user?.id as string,
     };
-    uploadComment(commentData);
-    reset({ content: "" });
+    comment ? updateComment(commentData) : uploadComment(commentData);
+    !comment && reset({ content: "" });
+    handleChangeMode && handleChangeMode("");
   };
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-row border border-main-1 rounded-lg"
+      className="flex flex-row w-full border border-main-1 rounded-lg"
     >
       <div className="flex flex-col grow-6 py-3 px-4">
         <span className="font-semibold mb-[10px]">
