@@ -9,7 +9,6 @@ import CommentList from "./CommentList";
 const CommentSection = ({ postId }: { postId: string }) => {
   const { data: comments, isPending } = useGetComment(postId);
   if (!comments) return <Loading />;
-  if (isPending) return <Loading />;
 
   return (
     <div className="flex flex-col gap-3 w-full mt-[25px] mb-[50px]">
