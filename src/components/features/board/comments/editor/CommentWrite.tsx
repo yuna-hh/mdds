@@ -5,8 +5,8 @@ import { useThrottledClick } from "@/hooks/common/useThrottledClick";
 import { CommentsRequestType, CommentsResponseType } from "@/types/comment";
 import { authStore } from "@/zustand/authStore";
 import { useForm, useWatch } from "react-hook-form";
-import CommentAction from "../list/CommentAction";
 import { useUpdateComment } from "@/hooks/board/comment/useUpdateComment";
+import Image from "next/image";
 
 type CommentWriteProps = {
   postId: string;
@@ -54,19 +54,19 @@ const CommentWrite = ({
       className="flex flex-row w-full border border-main-1 rounded-lg"
     >
       <div className="flex flex-col grow-6 py-3 px-4">
-        <div className="flex flex-row justify-between">
-          <span className="font-semibold mb-[10px]">
+        <div className="flex flex-row justify-between items-center">
+          <span className="font-semibold">
             {user?.user_metadata.display_name}
           </span>
           {handleChangeMode && (
             <button type="button" onClick={() => handleChangeMode("")}>
-              x
+              <Image src="/icon-x.svg" width={13} height={13} alt="닫기" />
             </button>
           )}
         </div>
         <textarea
           placeholder="댓글을 작성해주세요"
-          className="grow-1 outline-none resize-none"
+          className="mt-[10px] grow-1 outline-none resize-none"
           {...register("content", COMMENT_VALIDATION)}
         />
         <span className="ml-auto text-sm">{`${contentValue.length} / 500`}</span>
