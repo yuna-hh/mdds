@@ -21,3 +21,21 @@ export async function DELETE(
     console.log(error)
   }
 }
+
+export async function PATCH(request: NextRequest, { params }: { params: { commentId: string }}) {
+  const supabase = await createClient()
+  const { commentId } = await params
+  const commentData = await request.json()
+  try {
+    const { error, data } = await supabase
+    .from("comments")
+    .update(commentData)
+    .eq("id", commentId)
+
+    if(error) return handleError("댓글 수정을 실패하였습니다")
+    return handleSuccess("댓글 수정이 완료되었습니다")
+  } catch(error) {
+    handleNetworkError()
+    console.log(error)
+  }
+}
