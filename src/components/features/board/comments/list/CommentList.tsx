@@ -1,28 +1,51 @@
-"use client";
-
-import Loading from "@/components/common/status/Loading";
-import { useGetComment } from "@/hooks/board/comment/useGetComment";
-import Comment from "./Comment";
-import Empty from "@/components/common/status/Empty";
-import CommentWrite from "../editor/CommentWrite";
+import { CommentsResponseType } from "@/types/comment";
+import CommentAction from "../editor/CommentAction";
+import { authStore } from "@/zustand/authStore";
 import { useState } from "react";
+import CommentWrite from "../editor/CommentWrite";
 
-const CommentList = ({ postId }: { postId: string }) => {
-  const { data: comments, isPending, isError } = useGetComment(postId);
-  if (!comments) return <Loading />;
-  if (isPending) return <Loading />;
-
-  return (
-    <div className="flex flex-col gap-3 w-full mt-[25px] mb-[50px]">
-      <span className="font-bold">댓글 {comments.length}</span>
-      {comments.length > 0 ? (
-        <Comment comments={comments} postId={postId} />
-      ) : (
-        <Empty content="댓글" />
-      )}
-      <CommentWrite postId={postId} />
-    </div>
-  );
+type CommentProps = {
+  comments: CommentsResponseType[];
+  postId: string;
 };
+
+function CommentList({ comments, postId }: CommentProps) {
+  const { user } = authStore();
+  const [selectId, setSelectId] = useState("");
+  const handleChangeMode = (id: string) => {
+    setSelectId(id);
+  };
+  return (
+    <ul className="flex flex-col justify-center items-center gap-3">
+      {comments.map((comment) =>
+        selectId === comment.id ? (
+          <CommentWrite
+            postId={postId}
+            key={comment.id}
+            comment={comment}
+            handleChangeMode={handleChangeMode}
+          />
+        ) : (
+          <li
+            key={comment.id}
+            className="w-full px-[16px] py-[12px] border border-main-1 rounded-lg"
+          >
+            <span className="inline-block font-semibold mb-[6px]">
+              {comment.user.name}
+            </span>
+            <p>{comment.content}</p>
+            {user?.id === comment.author && (
+              <CommentAction
+                postId={comment.post_id}
+                commentId={comment.id}
+                handleChangeMode={handleChangeMode}
+              />
+            )}
+          </li>
+        )
+      )}
+    </ul>
+  );
+}
 
 export default CommentList;

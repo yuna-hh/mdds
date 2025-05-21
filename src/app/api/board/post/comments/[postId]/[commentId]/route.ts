@@ -2,13 +2,6 @@ import { createClient } from "@/supabase/server"
 import { handleError, handleNetworkError, handleSuccess } from "@/utils/response/api"
 import { NextRequest } from "next/server"
 
-type CommentParams = {
-  params: {
-    postId?: string
-  commentId?: string
-  }
-}
-
 export async function DELETE(
   request: NextRequest,
   {params} : {params: {commentId: string}}
