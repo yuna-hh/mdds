@@ -2,8 +2,8 @@ import { CommentsResponseType } from "@/types/comment";
 import CommentAction from "../editor/CommentAction";
 import { authStore } from "@/zustand/authStore";
 import { useState } from "react";
-import CommentWrite from "../editor/CommentWrite";
 import { formatKST } from "@/utils/format/date";
+import CommentForm from "../editor/CommentForm";
 
 type CommentProps = {
   comments: CommentsResponseType[];
@@ -20,7 +20,7 @@ function CommentList({ comments, postId }: CommentProps) {
     <ul className="flex flex-col justify-center items-center gap-3">
       {comments.map((comment) =>
         selectId === comment.id ? (
-          <CommentWrite
+          <CommentForm
             postId={postId}
             key={comment.id}
             comment={comment}
@@ -44,7 +44,7 @@ function CommentList({ comments, postId }: CommentProps) {
                 </span>
               )}
             </div>
-            <p>{comment.content}</p>
+            <p className="whitespace-pre-wrap break-words">{comment.content}</p>
             {user?.id === comment.author && (
               <CommentAction
                 postId={comment.post_id}

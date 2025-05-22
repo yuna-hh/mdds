@@ -3,8 +3,8 @@
 import Loading from "@/components/common/status/Loading";
 import { useGetComment } from "@/hooks/board/comment/useGetComment";
 import Empty from "@/components/common/status/Empty";
-import CommentWrite from "../editor/CommentWrite";
 import CommentList from "./CommentList";
+import CommentForm from "../editor/CommentForm";
 
 const CommentSection = ({ postId }: { postId: string }) => {
   const { data: comments, isPending } = useGetComment(postId);
@@ -18,7 +18,7 @@ const CommentSection = ({ postId }: { postId: string }) => {
       ) : (
         <Empty content="댓글" />
       )}
-      <CommentWrite postId={postId} />
+      <CommentForm postId={postId} />
     </div>
   );
 };
