@@ -43,6 +43,7 @@ const CommentWrite = ({
     const commentData = {
       ...data,
       author: user?.id as string,
+      ...(comment && { is_edited: true }),
     };
     comment ? updateComment(commentData) : uploadComment(commentData);
     !comment && reset({ content: "" });

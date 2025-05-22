@@ -38,6 +38,11 @@ function CommentList({ comments, postId }: CommentProps) {
               <span className="ml-2 text-[14px] text-main-2">
                 {formatKST(comment.created_at)}
               </span>
+              {comment.is_edited && (
+                <span className="ml-auto text-[14px] text-main-2">
+                  ( 수정됨 )
+                </span>
+              )}
             </div>
             <p>{comment.content}</p>
             {user?.id === comment.author && (
