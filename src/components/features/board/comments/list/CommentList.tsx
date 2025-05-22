@@ -3,6 +3,7 @@ import CommentAction from "../editor/CommentAction";
 import { authStore } from "@/zustand/authStore";
 import { useState } from "react";
 import CommentWrite from "../editor/CommentWrite";
+import { formatKST } from "@/utils/format/date";
 
 type CommentProps = {
   comments: CommentsResponseType[];
@@ -30,9 +31,14 @@ function CommentList({ comments, postId }: CommentProps) {
             key={comment.id}
             className="w-full px-[16px] py-[12px] border border-main-1 rounded-lg"
           >
-            <span className="inline-block font-semibold mb-[6px]">
-              {comment.user.name}
-            </span>
+            <div className="flex flex-row items-center mb-[6px]">
+              <span className="inline-block font-semibold ">
+                {comment.user.name}
+              </span>
+              <span className="ml-2 text-[14px] text-main-2">
+                {formatKST(comment.created_at)}
+              </span>
+            </div>
             <p>{comment.content}</p>
             {user?.id === comment.author && (
               <CommentAction
