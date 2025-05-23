@@ -9,7 +9,7 @@ export function useGetPostList(page?: number, limit?:number) {
     isError
   } = useQuery<PostListData>({
     queryKey:["postList", page, limit],
-    queryFn: ()=>getPostList(page, limit)
+    queryFn: () => getPostList(page, limit)
   })
   return {postListData, isPending, isError}
 }
