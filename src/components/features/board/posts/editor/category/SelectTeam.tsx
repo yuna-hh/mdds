@@ -3,7 +3,6 @@ import { Control, Controller, FieldErrors } from "react-hook-form";
 import Select from "react-select";
 import { categoryStyle } from "./categoryStyle";
 import { TEAM_VALIDATION } from "@/constants/validation/postValidation";
-import { useGetCategory } from "@/hooks/board/post/useGetCategory";
 import Loading from "@/components/common/status/Loading";
 
 type SelectTeamProps = {

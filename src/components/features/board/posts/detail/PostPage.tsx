@@ -1,4 +1,3 @@
-import CommentSkeleton from "@/components/common/status/skeleton/CommentSkeleton";
 import CommentSection from "../../comments/list/CommentSection";
 import PostContent from "./PostContent";
 import Button from "@/components/common/form/Button";

@@ -11,13 +11,13 @@ import Image from "next/image";
 type CommentFormProps = {
   postId: string;
   comment?: CommentsResponseType;
-  handleChangeMode?: (id: string) => void;
+  handleEditMode?: (id: string) => void;
 };
 
 const CommentForm = ({
   postId,
   comment,
-  handleChangeMode,
+  handleEditMode: handleEditMode,
 }: CommentFormProps) => {
   const {
     register,
@@ -47,7 +47,7 @@ const CommentForm = ({
     };
     comment ? updateComment(commentData) : uploadComment(commentData);
     !comment && reset({ content: "" });
-    handleChangeMode && handleChangeMode("");
+    handleEditMode && handleEditMode("");
   };
   return (
     <form
@@ -59,8 +59,8 @@ const CommentForm = ({
           <span className="font-semibold">
             {user?.user_metadata.display_name}
           </span>
-          {handleChangeMode && (
-            <button type="button" onClick={() => handleChangeMode("")}>
+          {handleEditMode && (
+            <button type="button" onClick={() => handleEditMode("")}>
               <Image src="/icon-x.svg" width={13} height={13} alt="닫기" />
             </button>
           )}

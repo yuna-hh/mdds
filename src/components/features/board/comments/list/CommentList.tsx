@@ -13,7 +13,7 @@ type CommentProps = {
 function CommentList({ comments, postId }: CommentProps) {
   const { user } = authStore();
   const [selectId, setSelectId] = useState("");
-  const handleChangeMode = (id: string) => {
+  const handleEditMode = (id: string) => {
     setSelectId(id);
   };
   return (
@@ -24,7 +24,7 @@ function CommentList({ comments, postId }: CommentProps) {
             postId={postId}
             key={comment.id}
             comment={comment}
-            handleChangeMode={handleChangeMode}
+            handleEditMode={handleEditMode}
           />
         ) : (
           <li
@@ -49,7 +49,7 @@ function CommentList({ comments, postId }: CommentProps) {
               <CommentAction
                 postId={comment.post_id}
                 commentId={comment.id}
-                handleChangeMode={handleChangeMode}
+                handleEditMode={handleEditMode}
               />
             )}
           </li>

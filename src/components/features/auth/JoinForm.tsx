@@ -80,7 +80,7 @@ const JoinForm = () => {
       <Input
         label="휴대전화"
         type="tel"
-        placeholder="-없이 숫자만 입력"
+        placeholder="-없이 숫자만 입력해주세요"
         variant="compact"
         {...register("phone", PHONE_NUMBER_VALIDATION)}
         error={errors.phone}

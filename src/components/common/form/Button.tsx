@@ -45,7 +45,7 @@ const Button = ({
         onClick={(e) => {
           e.preventDefault();
           Notiflix.Confirm.show(
-            "mmds",
+            "mdds",
             `${confirm}`,
             "Yes",
             "No",

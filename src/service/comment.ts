@@ -1,10 +1,5 @@
 import { CommentsRequestType } from '@/types/comment'
 
-type commentProps = {
-  postId: string;
-  commentId: string;
-}
-
 export async function getComment(postId: string){
   const response = await fetch(`/api/board/post/comments/${postId}`)
   const {data} = await response.json()

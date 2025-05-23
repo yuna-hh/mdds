@@ -4,7 +4,7 @@ import {
   IMAGE_VALIDATION,
 } from "@/constants/validation/postValidation";
 import useUploadImage from "@/hooks/board/post/useUploadImage";
-import { handleCompression } from "@/hooks/useImageCompression";
+import { handleCompression } from "@/hooks/common/useImageCompression";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";

@@ -6,6 +6,7 @@ export async function handleCompression (file: File)  {
     maxSizeMB : 1, 
     maxWidthOrHeight : 1920, 
     useWebWorker : true,
+    fileType: "image/webp"
   } 
   try  { 
     const compressedImage  = await imageCompression(file, options) ;
