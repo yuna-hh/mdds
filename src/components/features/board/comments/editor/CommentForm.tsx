@@ -8,17 +8,17 @@ import { useForm, useWatch } from "react-hook-form";
 import { useUpdateComment } from "@/hooks/board/comment/useUpdateComment";
 import Image from "next/image";
 
-type CommentWriteProps = {
+type CommentFormProps = {
   postId: string;
   comment?: CommentsResponseType;
   handleChangeMode?: (id: string) => void;
 };
 
-const CommentWrite = ({
+const CommentForm = ({
   postId,
   comment,
   handleChangeMode,
-}: CommentWriteProps) => {
+}: CommentFormProps) => {
   const {
     register,
     handleSubmit,
@@ -43,6 +43,7 @@ const CommentWrite = ({
     const commentData = {
       ...data,
       author: user?.id as string,
+      ...(comment && { is_edited: true }),
     };
     comment ? updateComment(commentData) : uploadComment(commentData);
     !comment && reset({ content: "" });
@@ -66,7 +67,7 @@ const CommentWrite = ({
         </div>
         <textarea
           placeholder="댓글을 작성해주세요"
-          className="mt-[10px] grow-1 outline-none resize-none"
+          className="mt-[10px] grow-1 outline-none resize-none whitespace-pre-wrap"
           {...register("content", COMMENT_VALIDATION)}
         />
         <span className="ml-auto text-sm">{`${contentValue.length} / 500`}</span>
@@ -83,4 +84,4 @@ const CommentWrite = ({
   );
 };
 
-export default CommentWrite;
+export default CommentForm;

@@ -2,7 +2,8 @@ import { CommentsResponseType } from "@/types/comment";
 import CommentAction from "../editor/CommentAction";
 import { authStore } from "@/zustand/authStore";
 import { useState } from "react";
-import CommentWrite from "../editor/CommentWrite";
+import { formatKST } from "@/utils/format/date";
+import CommentForm from "../editor/CommentForm";
 
 type CommentProps = {
   comments: CommentsResponseType[];
@@ -19,7 +20,7 @@ function CommentList({ comments, postId }: CommentProps) {
     <ul className="flex flex-col justify-center items-center gap-3">
       {comments.map((comment) =>
         selectId === comment.id ? (
-          <CommentWrite
+          <CommentForm
             postId={postId}
             key={comment.id}
             comment={comment}
@@ -30,10 +31,20 @@ function CommentList({ comments, postId }: CommentProps) {
             key={comment.id}
             className="w-full px-[16px] py-[12px] border border-main-1 rounded-lg"
           >
-            <span className="inline-block font-semibold mb-[6px]">
-              {comment.user.name}
-            </span>
-            <p>{comment.content}</p>
+            <div className="flex flex-row items-center mb-[6px]">
+              <span className="inline-block font-semibold ">
+                {comment.user.name}
+              </span>
+              <span className="ml-2 text-[14px] text-main-2">
+                {formatKST(comment.created_at)}
+              </span>
+              {comment.is_edited && (
+                <span className="ml-auto text-[14px] text-main-2">
+                  ( 수정됨 )
+                </span>
+              )}
+            </div>
+            <p className="whitespace-pre-wrap break-words">{comment.content}</p>
             {user?.id === comment.author && (
               <CommentAction
                 postId={comment.post_id}

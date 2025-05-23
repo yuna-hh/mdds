@@ -41,8 +41,8 @@ const PostContent = ({ postId }: { postId: string }) => {
           onLoad={() => setIsLoading(false)}
         />
       </div>
-      <div className="w-full p-[13px] border border-main-1 rounded-lg">
-        <ul className="break-words mt-[17px] ml-[18px] list-disc list-inside space-y-2">
+      <div className="w-full px-[17px] border border-main-1 rounded-lg">
+        <ul className="my-[30px] break-words  list-disc list-inside space-y-2">
           <li>사용항목 : {usage_detail}</li>
           <li>청구금액: {price}원</li>
           <li>명단 / 인원수 : {user_list}</li>

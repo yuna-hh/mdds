@@ -11,6 +11,7 @@ export async function GET(_: NextRequest,
     .from("comments")
     .select(`*, user(name)`)
     .eq("post_id", postId)
+    .order("created_at")
 
     if(error) return handleError("데이터를 불러오는데 실패하였습니다")
 

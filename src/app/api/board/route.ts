@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     return handleSuccess({data, page, limit, count}, undefined)
 
   } catch (error) {
-    return handleError("실패하였습니다")
+    return handleNetworkError()
   }
 }
 
