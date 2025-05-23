@@ -5,10 +5,12 @@ import { useGetComment } from "@/hooks/board/comment/useGetComment";
 import Empty from "@/components/common/status/Empty";
 import CommentList from "./CommentList";
 import CommentForm from "../editor/CommentForm";
+import CommentSkeleton from "@/components/common/status/skeleton/CommentSkeleton";
 
 const CommentSection = ({ postId }: { postId: string }) => {
   const { data: comments, isPending } = useGetComment(postId);
   if (!comments) return <Loading />;
+  if (isPending) return <CommentSkeleton />;
 
   return (
     <div className="flex flex-col gap-3 w-full mt-[25px] mb-[50px]">
