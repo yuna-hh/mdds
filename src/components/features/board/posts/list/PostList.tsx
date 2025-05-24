@@ -10,7 +10,7 @@ import { Notify } from "notiflix";
 
 const PostList = () => {
   const { page, limit, onPageChange, currentPage } = usePagination();
-  const { postListData, isPending, isError } = useGetPostList(page, limit);
+  const { postListData, isPending } = useGetPostList(page, limit);
   const { user } = authStore();
   if (isPending) return <Loading />;
   return (

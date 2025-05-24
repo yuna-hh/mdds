@@ -12,12 +12,4 @@ export function useGetPost(postId?: string) {
     enabled: !!postId
   })
   return {data, isPending, isError}
-  // const { data, error } = useSuspenseQuery<PostDataType[]>({
-  //   queryKey: ["postData", postId],
-  //   queryFn: () => getPost(postId),
-  // })
-  // if(error) {
-  //   console.log(error)
-  // }
-  // return {data}
 }

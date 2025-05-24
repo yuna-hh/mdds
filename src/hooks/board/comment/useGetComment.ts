@@ -1,5 +1,3 @@
-"use client"
-
 import { getComment } from '@/service/comment'
 import { CommentsResponseType } from '@/types/comment'
 import { useQuery } from '@tanstack/react-query'

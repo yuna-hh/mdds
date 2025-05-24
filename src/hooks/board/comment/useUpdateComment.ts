@@ -12,6 +12,7 @@ export const useUpdateComment = (postId: string, commentId: string) => {
     },
     onError: (error) => {
       Notify.failure("댓글 수정 중 네트워크 오류가 발생하였습니다")
+      console.log(error)
     }
   })
 }
