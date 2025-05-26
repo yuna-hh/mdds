@@ -1,21 +1,25 @@
 import { createClient } from "@/supabase/server";
+import { getPaginationParams } from '@/utils/paginate/pagination';
 import { handleError, handleNetworkError, handleSuccess } from "@/utils/response/api";
 import { NextRequest } from "next/server";
 
-export async function GET(_: NextRequest,
+export async function GET(request: NextRequest,
   {params}: {params: {postId: string}}) {
   const supabase = await createClient()
   const {postId} = await params;
+  const searchParams = request.nextUrl.searchParams
+  const { page, limit, from, to } = getPaginationParams(searchParams)
   try{
-    const { data, error } = await supabase
+    const { data, error, count } = await supabase
     .from("comments")
-    .select(`*, user(name)`)
+    .select(`*, user(name)`, {count: "exact"})
     .eq("post_id", postId)
     .order("created_at")
+    .range(from, to)
 
     if(error) return handleError("데이터를 불러오는데 실패하였습니다")
 
-    return handleSuccess(data)
+    return handleSuccess({data, page, limit, count})
   } catch (error) {
     return handleNetworkError()
   } 

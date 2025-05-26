@@ -1,9 +1,11 @@
 import { CommentsRequestType } from '@/types/comment'
 
-export async function getComment(postId: string){
-  const response = await fetch(`/api/board/post/comments/${postId}`)
-  const {data} = await response.json()
-  return data ?? []
+export async function getCommentList(postId: string, page?: number, limit?: number){
+  const BASE_URL = `/api/board/post/comments/${postId}`
+  const url = page && limit ? `${BASE_URL}?page=${page}&limit=${limit}` : BASE_URL
+  const response = await fetch(url)
+  const { data } = await response.json()
+  return data
 }
 
 export async function deleteComment(postId: string, commentId: string){

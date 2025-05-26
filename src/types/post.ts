@@ -14,10 +14,10 @@ export type PostListType = {
 }
 
 export type PostListData = {
-  data: PostListType[];
   count: number;
-  page: number;
+  data: PostListType[];
   limit: number;
+  page: number;
 }
 
 export type PostResponseType = Tables<"posts"> & { teams: Pick <Tables<"teams">,"team"> }
