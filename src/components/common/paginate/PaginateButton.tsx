@@ -2,11 +2,13 @@ import { memo } from "react";
 import ReactPaginate from "react-paginate";
 
 export type PaginateType = {
+  isReverse?: boolean;
   pageCount: number;
   currentPage: number;
   onPageChange: (selectedPage: { selected: number }) => void;
 };
 function PaginateBtn({
+  isReverse,
   pageCount,
   currentPage,
   onPageChange,
@@ -17,7 +19,7 @@ function PaginateBtn({
       nextLabel={"다음"}
       breakLabel={"..."}
       pageCount={pageCount}
-      forcePage={currentPage}
+      forcePage={isReverse ? pageCount - 1 : currentPage}
       onPageChange={onPageChange}
       containerClassName={"flex justify-center space-x-3 text-sm mt-4"}
       previousLinkClassName={"text-main-1 focus:outline-none cursor-pointer"}

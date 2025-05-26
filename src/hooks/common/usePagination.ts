@@ -15,6 +15,7 @@ export function usePagination() {
     limit,
     onPageChange,
     currentPage,
+    setCurrentPage
   };
 }
 
