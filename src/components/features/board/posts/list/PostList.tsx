@@ -3,14 +3,14 @@ import PaginateButton from "@/components/common/paginate/PaginateButton";
 import Empty from "@/components/common/status/Empty";
 import Loading from "@/components/common/status/Loading";
 import { useGetPostList } from "@/hooks/board/useGetPostList";
-import usePagination from "@/hooks/usePagination";
+import usePagination from "@/hooks/common/usePagination";
 import { authStore } from "@/zustand/authStore";
 import Link from "next/link";
 import { Notify } from "notiflix";
 
 const PostList = () => {
   const { page, limit, onPageChange, currentPage } = usePagination();
-  const { postListData, isPending, isError } = useGetPostList(page, limit);
+  const { postListData, isPending } = useGetPostList(page, limit);
   const { user } = authStore();
   if (isPending) return <Loading />;
   return (

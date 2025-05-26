@@ -2,7 +2,7 @@
 import { useCallback, useState } from "react";
 
 export function usePagination() {
-  const limit = 5;
+  const limit = 10;
   const [currentPage, setCurrentPage] = useState<number>(0);
   const page = currentPage + 1;
 
@@ -15,6 +15,7 @@ export function usePagination() {
     limit,
     onPageChange,
     currentPage,
+    setCurrentPage
   };
 }
 

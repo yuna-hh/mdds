@@ -3,17 +3,17 @@ import { useDeleteComment } from "@/hooks/board/comment/useDeleteComment";
 type CommentActionProps = {
   postId: string;
   commentId: string;
-  handleChangeMode?: (id: string) => void;
+  handleEditMode?: (id: string) => void;
 };
 
 function CommentAction({
   postId,
   commentId,
-  handleChangeMode,
+  handleEditMode: handleEditMode,
 }: CommentActionProps) {
   const { handleDeleteComment } = useDeleteComment({ postId, commentId });
   const handleChange = (commentId: string) => {
-    handleChangeMode && handleChangeMode(commentId);
+    handleEditMode && handleEditMode(commentId);
   };
   return (
     <div className="flex justify-end gap-[14px] mt-[22px] font-bold">

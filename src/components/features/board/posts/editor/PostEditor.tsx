@@ -4,7 +4,7 @@ import { useGetCategory } from "@/hooks/board/post/useGetCategory";
 import Loading from "@/components/common/status/Loading";
 import { authStore } from "@/zustand/authStore";
 import { useGetPost } from "@/hooks/board/post/useGetPost";
-import { Notify, Report } from "notiflix";
+import { Notify } from "notiflix";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -14,10 +14,10 @@ type PostWriteType = {
 };
 
 const PostEditor = ({ postId, isEdit }: PostWriteType) => {
-  const router = useRouter();
-  const { data: categoryData } = useGetCategory();
   const { user } = authStore();
+  const { data: categoryData } = useGetCategory();
   const { data: prevPostData } = useGetPost(postId);
+  const router = useRouter();
 
   useEffect(() => {
     if (prevPostData && user?.id !== prevPostData.author) {

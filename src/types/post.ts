@@ -14,41 +14,14 @@ export type PostListType = {
 }
 
 export type PostListData = {
-  data: PostListType[];
   count: number;
-  page: number;
+  data: PostListType[];
   limit: number;
+  page: number;
 }
-
-// export type PostDataType = {
-//   account: string;
-//   author: string;
-//   created_at: string
-//   id: string;
-//   price: number;
-//   team: string;
-//   teams: {team: string};
-//   title: string;s
-//   usage_detail: string;
-//   user_list: string;
-// }
 
 export type PostResponseType = Tables<"posts"> & { teams: Pick <Tables<"teams">,"team"> }
 
 export type PostRequestType = Omit <Tables<"posts">,"created_at" | "id">
 
 export type TeamsType = Tables<"teams">
-
-// export type PostResponseType = {
-//   account: string;
-//     author: string | null;
-//     created_at: string;
-//     id: string;
-//     img_url: string | File;
-//     price: number;
-//     team: string;
-//     title: string;
-//     usage_detail: string;
-//     user_list: string;
-//     teams: {team: string};
-// }

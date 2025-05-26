@@ -24,7 +24,7 @@ function PaginateBtn({
       nextLinkClassName={"text-main-1 focus:outline-none cursor-pointer"}
       pageLinkClassName={"text-main-2 focus:outline-none cursor-pointer"}
       breakLinkClassName={"page-link"}
-      disabledLinkClassName={"focus:text-main-2 !cursor-not-allowed"}
+      disabledLinkClassName={"!text-main-2 !cursor-not-allowed"}
       activeClassName={"!font-bold"}
       activeLinkClassName={"!text-main-1 !font-bold"}
     />
