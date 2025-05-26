@@ -4,31 +4,19 @@ import { authStore } from "@/zustand/authStore";
 import { useState } from "react";
 import { formatKST } from "@/utils/format/date";
 import CommentForm from "../editor/CommentForm";
-import PaginateButton from "@/components/common/paginate/PaginateButton";
 
 type CommentProps = {
   data: commentListData;
   postId: string;
-  limit: number;
-  page: number;
-  onPageChange: (selectedPage: { selected: number }) => void;
-  currentPage: number;
 };
 
-function CommentList({
-  data,
-  postId,
-  limit,
-  page,
-  onPageChange,
-  currentPage,
-}: CommentProps) {
+function CommentList({ data, postId }: CommentProps) {
   const { user } = authStore();
   const [selectId, setSelectId] = useState("");
   const handleEditMode = (id: string) => {
     setSelectId(id);
   };
-  const { data: comments, count } = data;
+  const { data: comments } = data;
   return (
     <>
       <ul className="flex flex-col justify-center items-center gap-3">
@@ -72,12 +60,6 @@ function CommentList({
           )
         )}
       </ul>
-      <PaginateButton
-        pageCount={Math.ceil((data?.count ?? 0) / limit)}
-        currentPage={currentPage}
-        onPageChange={onPageChange}
-        isReverse={true}
-      />
     </>
   );
 }
