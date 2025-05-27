@@ -7,3 +7,8 @@ export const getPaginationParams = (searchParams: URLSearchParams) => {
 
   return { page, limit, from, to };
 };
+
+
+export const calculateLastPageIndex = (countData: number, option: number = 0) => {
+  return Math.ceil((countData + option) / 10) - 1
+}

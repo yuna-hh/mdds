@@ -9,6 +9,7 @@ import CommentSkeleton from "@/components/common/status/skeleton/CommentSkeleton
 import usePagination from "@/hooks/common/usePagination";
 import { useEffect, useRef } from "react";
 import PaginateButton from "@/components/common/paginate/PaginateButton";
+import { calculateLastPageIndex } from "@/utils/paginate/pagination";
 
 const CommentSection = ({ postId }: { postId: string }) => {
   const { page, limit, onPageChange, currentPage, setCurrentPage } =
@@ -19,24 +20,24 @@ const CommentSection = ({ postId }: { postId: string }) => {
 
   useEffect(() => {
     if (data && !pageSetRef.current && data.count > 0) {
-      const lastPage = Math.ceil(data.count / limit) - 1;
+      const lastPage = calculateLastPageIndex(data.count);
       setCurrentPage(lastPage);
       pageSetRef.current = true;
     }
-  }, [data]);
+  }, [data?.count]);
 
   if (!data) return <Loading />;
   if (isPending) return <CommentSkeleton />;
 
   return (
     <div className="flex flex-col gap-3 w-full mt-[25px] mb-[50px]">
-      <span className="font-bold">댓글 {data.data.length}</span>
+      <span className="font-bold">댓글 {data.count}</span>
       {data.data.length > 0 ? (
         <CommentList data={data} postId={postId} />
       ) : (
         <Empty content="댓글" />
       )}
-      <CommentForm postId={postId} />
+      <CommentForm postId={postId} pageSetRef={pageSetRef} />
       {data.count > 0 && (
         <PaginateButton
           pageCount={Math.ceil((data.count ?? 0) / limit)}

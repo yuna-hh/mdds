@@ -7,17 +7,20 @@ import { authStore } from "@/zustand/authStore";
 import { useForm, useWatch } from "react-hook-form";
 import { useUpdateComment } from "@/hooks/board/comment/useUpdateComment";
 import Image from "next/image";
+import { RefObject } from "react";
 
 type CommentFormProps = {
   postId: string;
   comment?: CommentsResponseType;
   handleEditMode?: (id: string) => void;
+  pageSetRef?: RefObject<boolean>;
 };
 
 const CommentForm = ({
   postId,
   comment,
   handleEditMode: handleEditMode,
+  pageSetRef,
 }: CommentFormProps) => {
   const {
     register,
@@ -46,7 +49,11 @@ const CommentForm = ({
       ...(comment && { is_edited: true }),
     };
     comment ? updateComment(commentData) : uploadComment(commentData);
-    !comment && reset({ content: "" });
+    if (!comment && pageSetRef) {
+      pageSetRef.current = false;
+      reset({ content: "" });
+    }
+    // !comment && reset({ content: "" });
     handleEditMode && handleEditMode("");
   };
   return (
