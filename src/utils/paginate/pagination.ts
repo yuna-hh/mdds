@@ -7,3 +7,9 @@ export const getPaginationParams = (searchParams: URLSearchParams) => {
 
   return { page, limit, from, to };
 };
+
+export const calculatePageIndex = (countData: number, isTotal: boolean = false) => {
+  if(countData === 0) return 0
+  const totalPage = Math.ceil(countData / 10)
+  return isTotal ? totalPage : totalPage - 1
+}
