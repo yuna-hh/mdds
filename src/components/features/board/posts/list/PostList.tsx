@@ -4,6 +4,7 @@ import Empty from "@/components/common/status/Empty";
 import Loading from "@/components/common/status/Loading";
 import { useGetPostList } from "@/hooks/board/useGetPostList";
 import usePagination from "@/hooks/common/usePagination";
+import { calculatePageIndex } from "@/utils/paginate/pagination";
 import { authStore } from "@/zustand/authStore";
 import Link from "next/link";
 import { Notify } from "notiflix";
@@ -13,6 +14,7 @@ const PostList = () => {
   const { postListData, isPending } = useGetPostList(page, limit);
   const { user } = authStore();
   if (isPending) return <Loading />;
+  if (!postListData) return <Empty content="게시글" />;
   return (
     <>
       {postListData?.data && postListData.data.length === 0 && (
@@ -38,7 +40,7 @@ const PostList = () => {
         ))}
       </ul>
       <PaginateButton
-        pageCount={Math.ceil((postListData?.count ?? 0) / limit)}
+        pageCount={calculatePageIndex(postListData?.count, true)}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />
