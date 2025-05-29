@@ -26,7 +26,7 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center gap-[10px] mt-[200px]"
+      className="flex flex-col items-center gap-[10px]"
     >
       <Input
         label="아이디"

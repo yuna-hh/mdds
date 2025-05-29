@@ -1,6 +1,8 @@
 const BoardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-w-[800px] w-full m-auto mb-[96px]">{children}</div>
+    <div className="flex flex-col justify-center max-w-[800px] w-full mb-[96px] mt-[73px] mx-[60px]">
+      {children}
+    </div>
   );
 };
 

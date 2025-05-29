@@ -25,12 +25,14 @@ const PostList = () => {
           <li key={post.id}>
             <Link
               href={user ? `/board/detail/${post.id}` : `/login`}
-              className="text-[16px] board-style border-not-first board-sm"
+              className="text-[16px] board-style border-not-right board-sm"
               onClick={() =>
                 !user && Notify.warning("로그인 후 이용 가능합니다")
               }
             >
-              <span>{postListData.count - (page - 1) * limit - index}</span>
+              <span className="hidden sm:inline">
+                {postListData.count - (page - 1) * limit - index}
+              </span>
               <span>{post.teams.team}</span>
               <span className="truncate">{post.title}</span>
               <span>{post.user.name}</span>
