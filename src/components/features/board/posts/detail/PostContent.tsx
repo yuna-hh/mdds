@@ -42,7 +42,7 @@ const PostContent = ({ postId }: { postId: string }) => {
         />
       </div>
       <div className="w-full px-[17px] border border-main-1 rounded-lg">
-        <ul className="my-[30px] break-words  list-disc list-inside space-y-2">
+        <ul className="my-[15px] sm:my-[30px] break-words space-y-2 list-header">
           <li>사용항목 : {usage_detail}</li>
           <li>청구금액: {price.toLocaleString()}원</li>
           <li>명단 / 인원수 : {user_list}</li>

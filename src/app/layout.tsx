@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { QueryProvider } from "./(providers)/_providers/QueryProvider";
-import localFont from "next/font/local";
 import NotiflixProvider from "./(providers)/_providers/NotiflixProvider";
 
 export const metadata: Metadata = {

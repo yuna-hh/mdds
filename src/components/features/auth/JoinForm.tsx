@@ -36,7 +36,7 @@ const JoinForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center gap-[10px] mt-[200px]"
+      className="flex flex-col items-center gap-[10px]"
     >
       <Input
         label="아이디"
@@ -85,9 +85,13 @@ const JoinForm = () => {
         {...register("phone", PHONE_NUMBER_VALIDATION)}
         error={errors.phone}
       />
-      <div className="flex flex-row justify-between w-full mb-10 text-[14px]">
+      <div className="flex flex-row flex-wrap sm:flex-nowrap justify-between w-full mb-10 text-[14px]">
         <PolicyForm register={register} watch={watch} errors={errors} />
-        <button type="button" onClick={handlePolicyOpen} className="underline">
+        <button
+          type="button"
+          onClick={handlePolicyOpen}
+          className="underline ml-auto"
+        >
           보기
         </button>
         {isOpen && <Policy isOpen={isOpen} setIsOpen={setIsOpen} />}

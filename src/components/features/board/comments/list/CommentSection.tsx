@@ -24,7 +24,7 @@ const CommentSection = ({ postId }: { postId: string }) => {
       setCurrentPage(lastPage);
       pageSetRef.current = true;
     }
-  }, [data?.count]);
+  }, [data]);
 
   if (isPending) return <CommentSkeleton />;
   if (!data) return <Loading />;

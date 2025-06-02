@@ -7,9 +7,9 @@ const Policy = ({ isOpen, setIsOpen }: PolicyPropsType) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="fixed top-0 inset-0 flex items-center justify-center bg-black/70 backdrop-blur-md">
-      <div className="w-[542px]">
-        <div className="py-[50px] px-[40px] text-sm bg-white">
+    <div className="absolute left-0 sm:fixed top-0 sm:inset-0 sm:flex sm:items-center sm:justify-center sm:bg-black/70 sm:backdrop-blur-md">
+      <div className="w-auto sm:w-[542px] overflow-y-scroll sm:overflow-y-hidden">
+        <div className="py-[50px] sm:py-[70px] px-[40px] text-sm bg-white">
           <p>
             &quot;회사명&quot;(이하 &apos;회사&apos;라 함)은고객님의 개인정보를
             중요시하며, &quot;정보통신망 이용촉진 및 정보보호&quot;에 관한
@@ -71,6 +71,8 @@ const Policy = ({ isOpen, setIsOpen }: PolicyPropsType) => {
         </button>
       </div>
     </div>
+    //{" "}
+    // </div>
   );
 };
 

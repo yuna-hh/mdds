@@ -9,7 +9,7 @@ import { authStore } from "@/zustand/authStore";
 import Link from "next/link";
 import { Notify } from "notiflix";
 
-const PostList = () => {
+const MobilePostList = () => {
   const { page, limit, onPageChange, currentPage } = usePagination();
   const { postListData, isPending } = useGetPostList(page, limit);
   const { user } = authStore();
@@ -20,23 +20,30 @@ const PostList = () => {
       {postListData?.data && postListData.data.length === 0 && (
         <Empty content="게시글" />
       )}
-      <ul className="mt-3 border border-main-1 rounded-[8px] border-not-last">
+      <ul className="border border-main-1 rounded-[8px] border-not-last">
         {postListData?.data.map((post, index) => (
           <li key={post.id}>
             <Link
               href={user ? `/board/detail/${post.id}` : `/login`}
-              className="text-[14px] sm:text-[16px] board-style border-not-right board-sm"
+              className="grid grid-cols-[1fr_4fr] items-center"
               onClick={() =>
                 !user && Notify.warning("로그인 후 이용 가능합니다")
               }
             >
-              <span className="hidden sm:inline">
-                {postListData.count - (page - 1) * limit - index}
-              </span>
-              <span>{post.teams.team}</span>
-              <span className="truncate">{post.title}</span>
-              <span className="truncate">{post.user.name}</span>
-              <span>{post.created_at.substring(0, 10)}</span>
+              <div className="text-center">
+                <span>{postListData.count - (page - 1) * limit - index}</span>
+              </div>
+              <div className="px-[7px] py-[6px] border-l border-main-1 ">
+                <span>{post.title}</span>
+                <div className="flex gap-[3px] text-[12px] text-main-2">
+                  <span>{post.user.name}</span>
+                  <span>･</span>
+                  <span>{post.created_at.substring(0, 10)}</span>
+                </div>
+                <span className="block text-[13px] text-main-2 leading-tight">
+                  {post.teams.team}
+                </span>
+              </div>
             </Link>
           </li>
         ))}
@@ -50,4 +57,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default MobilePostList;

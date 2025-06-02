@@ -29,22 +29,29 @@
 
 @layer utilities {
   .board-style {
-    --board-padding: 14px;
     display: grid;
-    grid-template-columns: 1fr 1.8fr 6.9fr 1.4fr 1.4fr;
+    grid-template-columns: 1.8fr 5fr 1.4fr 1.4fr;
     text-align: center;
+
+    @media (min-width: 640px) {
+      grid-template-columns: 1fr 1.8fr 6.9fr 1.4fr 1.4fr;
+    }
 
     &.board-sm span {
       padding: 10px;
     }
 
     &.board-md > span {
-      padding: 14px;
+      padding: 8px;
+
+      @media (min-width: 640px) {
+        padding: 14px;
+      }
     }
   }
 
-  .border-not-first > *:not(:first-child) {
-    border-left-width: 1px;
+  .border-not-right > *:not(:last-child) {
+    border-right-width: 1px;
     border-color: theme("colors.main-1");
   }
 
@@ -77,4 +84,9 @@ input::placeholder {
 
 button {
   cursor: pointer;
+}
+
+.list-header {
+  list-style-type: disc;
+  margin-left: 17px;
 }
