@@ -18,12 +18,12 @@ const Header = () => {
         </span>
       )}
       {user ? (
-        <div className="flex items-center gap-[25px] text-[15px] sm:text-[16px]">
+        <div className="flex items-center gap-5 sm:gap-10 text-[14px] sm:text-[16px]">
           <Link href={"/board/write"}>글쓰기</Link>
           <button onClick={handleLogout}>로그아웃</button>
         </div>
       ) : (
-        <div className="flex gap-10 text-[16px]">
+        <div className="flex gap-5 sm:gap-10 text-[14px] sm:text-[16px]">
           <Link href={"/login"}>로그인</Link>
           <Link href={"/join"}>회원가입</Link>
         </div>

@@ -85,3 +85,8 @@ input::placeholder {
 button {
   cursor: pointer;
 }
+
+.list-header {
+  list-style-type: disc;
+  margin-left: 17px;
+}

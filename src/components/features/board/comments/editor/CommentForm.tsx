@@ -61,7 +61,7 @@ const CommentForm = ({
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-row w-full border border-main-1 rounded-lg"
     >
-      <div className="flex flex-col grow-6 py-3 px-4">
+      <div className="flex flex-col grow-6 py-2 sm:py-3 px-[10px] sm:px-4">
         <div className="flex flex-row justify-between items-center">
           <span className="font-semibold">
             {user?.user_metadata.display_name}
@@ -82,7 +82,7 @@ const CommentForm = ({
       <button
         onClick={handleThrottleClick}
         type="submit"
-        className="grow-1 py-[55px] border-l border-main-1 font-bold disabled:cursor-not-allowed! disabled:text-gray-1"
+        className="grow-1 px-[10px] sm:py-[55px] border-l border-main-1 font-bold disabled:cursor-not-allowed! disabled:text-gray-1"
         disabled={!isValid || isSubmitting}
       >
         {comment ? "수정" : "등록"}

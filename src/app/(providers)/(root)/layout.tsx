@@ -5,7 +5,7 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthProvider>
       <Header />
-      <div className="flex justify-center min-w-[320px] max-w-[1200px] m-auto">
+      <div className="flex justify-center max-w-[1200px] m-auto">
         {children}
       </div>
     </AuthProvider>

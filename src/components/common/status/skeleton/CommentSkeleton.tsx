@@ -8,7 +8,7 @@ const CommentSkeleton = () => {
         <div className="flex flex-col gap-[15px] w-full px-[16px] py-[16px] border border-gray-1 rounded-lg">
           <div className="w-[200px] h-[12px] bg-gray-1 rounded-md"></div>
           <div className="w-[120px] h-[12px] bg-gray-1 rounded-md"></div>
-          <div className="w-[500px] h-[12px] bg-gray-1 rounded-md"></div>
+          <div className="w-[250px] sm:w-[500px] h-[12px] bg-gray-1 rounded-md"></div>
         </div>
         <div className="flex flex-col gap-[15px] w-full px-[16px] py-[16px] border border-gray-1 rounded-lg">
           <div className="w-[60px] h-[12px] bg-gray-1 rounded-md"></div>

@@ -31,21 +31,22 @@ function CommentList({ data, postId }: CommentProps) {
           ) : (
             <li
               key={comment.id}
-              className="w-full px-[16px] py-[12px] border border-main-1 rounded-lg"
+              className="w-full px-[10px] sm:px-[16px] py-[8px] sm:py-[12px] border border-main-1 rounded-lg"
             >
-              <div className="flex flex-row items-center mb-[6px]">
-                <span className="inline-block font-semibold ">
+              <div className="flex flex-row flex-wrap sm:flex-nowrap items-center mb-[6px]">
+                <span className="inline-block font-semibold text-[14px] sm:text-[16px]">
                   {comment.user.name}
                 </span>
-                <span className="ml-2 text-[14px] text-main-2">
+                <span className="ml-2 text-[12px] sm:text-[14px] text-main-2">
                   {formatKST(comment.created_at)}
                 </span>
                 {comment.is_edited && (
-                  <span className="ml-auto text-[14px] text-main-2">
+                  <span className="ml-auto text-[13px] sm:text-[14px] text-main-2">
                     ( 수정됨 )
                   </span>
                 )}
               </div>
+
               <p className="whitespace-pre-wrap break-words">
                 {comment.content}
               </p>
