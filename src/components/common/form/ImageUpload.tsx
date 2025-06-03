@@ -91,7 +91,7 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
               id="image"
               type="file"
               className="hidden"
-              accept="image/jpg, image/png, image/webp, image/jpeg"
+              accept="image/jpg, image/png, image/webp, image/jpeg, image/heic"
               onChange={(e) => imageHandler(e, onChange)}
             />
           </label>

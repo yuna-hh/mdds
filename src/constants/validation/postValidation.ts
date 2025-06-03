@@ -48,7 +48,7 @@ export const ACCOUNT_VALIDATION ={
 }
 
 
-export const fileExtension = [".jpeg", ".jpg", ".png", ".webp"];
+export const fileExtension = [".jpeg", ".jpg", ".png", ".webp", "heic"];
 
 export const IMAGE_VALIDATION ={
   required: "이미지를 첨부해주세요",

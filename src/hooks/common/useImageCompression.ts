@@ -1,4 +1,5 @@
 import imageCompression from 'browser-image-compression';
+import heic2any from 'heic2any';
 import { Notify } from 'notiflix';
 
 export async function handleCompression (file: File)  {
@@ -9,6 +10,13 @@ export async function handleCompression (file: File)  {
     fileType: "image/webp"
   } 
   try  { 
+    if (file.type.endsWith("heic")) {
+      let blob = file
+      await heic2any({blob: blob, toType : "image/jpg"})
+      .then((resultBlob) => {
+        file = new File([resultBlob as Blob], file.name.split(".")[0]+".jpg", {type: "image/jpg"})
+      })
+    }
     const compressedImage  = await imageCompression(file, options) ;
     const compressedImageUrl = await URL.createObjectURL(compressedImage)
     return { compressedImageUrl, compressedImage }
