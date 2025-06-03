@@ -3,7 +3,7 @@ import { handleError, handleNetworkError, handleSuccess } from "@/utils/response
 import { NextRequest } from "next/server"
 
 export async function DELETE(
-  request: NextRequest,
+  _: NextRequest,
   {params} : {params: {commentId: string}}
 ) {
   const supabase = await createClient()
@@ -27,7 +27,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { commen
   const { commentId } = await params
   const commentData = await request.json()
   try {
-    const { error, data } = await supabase
+    const { error } = await supabase
     .from("comments")
     .update(commentData)
     .eq("id", commentId)

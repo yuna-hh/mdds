@@ -3,7 +3,7 @@ import { handleError, handleNetworkError, handleSuccess } from '@/utils/response
 import { NextRequest } from 'next/server';
 
 export async function GET(
-  request: NextRequest,
+  _: NextRequest,
   { params } : { params: { postId: string }}) {
   const supabase = await createClient()
   const { postId } = await params
@@ -24,7 +24,7 @@ export async function GET(
 
 
 export async function DELETE(
-  request: NextRequest,
+  _: NextRequest,
   { params } : { params: { postId: string }}
 ) {
   const supabase = await createClient()
@@ -51,7 +51,7 @@ export async function PATCH(
   const { postId } = await params
   const postData = await request.json()
   try {
-    const { data, error } = await supabase
+    const { error } = await supabase
     .from("posts")
     .update(postData)
     .eq("id", postId)
