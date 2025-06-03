@@ -71,8 +71,6 @@ const Policy = ({ isOpen, setIsOpen }: PolicyPropsType) => {
         </button>
       </div>
     </div>
-    //{" "}
-    // </div>
   );
 };
 

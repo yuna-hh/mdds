@@ -27,6 +27,8 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       if (!extensionValidation(file)) return;
+      console.log(file);
+      console.log(file.type);
       const { compressedImageUrl, compressedImage } = await handleCompression(
         file
       );
@@ -91,7 +93,7 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
               id="image"
               type="file"
               className="hidden"
-              accept="image/jpg, image/png, image/webp, image/jpeg"
+              accept="image/jpg, image/png, image/webp, image/jpeg, image/heic"
               onChange={(e) => imageHandler(e, onChange)}
             />
           </label>
