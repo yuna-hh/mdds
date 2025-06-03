@@ -3,7 +3,7 @@ import throttle from "lodash.throttle";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Notiflix from "notiflix";
-import React, { ComponentProps, MouseEvent, useCallback, useMemo } from "react";
+import React, { ComponentProps, MouseEvent, useMemo } from "react";
 
 type ButtonProps = {
   content: string;

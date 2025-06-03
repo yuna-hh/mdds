@@ -24,6 +24,7 @@ const PostEditor = ({ postId, isEdit }: PostWriteType) => {
       Notify.failure("비정상적인 접근입니다");
       router.push("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prevPostData, user]);
 
   if (!categoryData) return <Loading />;

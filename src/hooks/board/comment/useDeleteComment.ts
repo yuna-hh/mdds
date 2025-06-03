@@ -17,6 +17,7 @@ export function useDeleteComment({postId, commentId}: DeleteCommentProps) {
       })
     },
     onError: (error) => {
+      console.log(error)
       Notify.failure("댓글 삭제 중 오류가 발생하였습니다")
     }
   })

@@ -48,13 +48,20 @@ const CommentForm = ({
       author: user?.id as string,
       ...(comment && { is_edited: true }),
     };
-    comment ? updateComment(commentData) : uploadComment(commentData);
+    // comment ? updateComment(commentData) : uploadComment(commentData);
+    if (comment) {
+      updateComment(commentData);
+    } else {
+      uploadComment(commentData);
+    }
+
     if (!comment && pageSetRef) {
       pageSetRef.current = false;
       reset({ content: "" });
     }
-    // !comment && reset({ content: "" });
-    handleEditMode && handleEditMode("");
+
+    handleEditMode?.("");
+    // handleEditMode && handleEditMode("");
   };
   return (
     <form

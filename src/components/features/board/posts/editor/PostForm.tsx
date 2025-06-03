@@ -59,7 +59,12 @@ const PostForm = ({
       ...data,
       author: user?.id as string,
     };
-    isEdit && postId ? updatePost({ postData, postId }) : uploadPost(postData);
+
+    if (isEdit && postId) {
+      updatePost({ postData, postId });
+    } else {
+      uploadPost(postData);
+    }
   };
   return (
     <>

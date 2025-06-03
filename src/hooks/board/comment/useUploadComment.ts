@@ -11,6 +11,7 @@ export function useUploadComment(postId: string) {
       queryClient.invalidateQueries({queryKey: ["comments", postId]})
     },
     onError: (error) => {
+      console.log(error)
       Notify.failure("댓글 등록 중 네트워크 오류가 발생하였습니다")
     }
   })

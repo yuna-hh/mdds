@@ -20,9 +20,9 @@ export default function useUpDatePost(){
       }
       Notify.success("게시글 수정이 완료되었습니다")
       router.push(`/board/detail/${postId}`)
-      // router.push(`/`)
     },
     onError: (error) => {
+      console.log(error)
       Notify.failure("게시물 수정 중 네트워크 오류가 발생하였습니다")
     }
   })
