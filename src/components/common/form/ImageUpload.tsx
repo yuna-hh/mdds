@@ -27,8 +27,6 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       if (!extensionValidation(file)) return;
-      console.log(file);
-      console.log(file.type);
       const { compressedImageUrl, compressedImage } = await handleCompression(
         file
       );
