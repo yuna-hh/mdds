@@ -13,7 +13,7 @@ function CommentAction({
 }: CommentActionProps) {
   const { handleDeleteComment } = useDeleteComment({ postId, commentId });
   const handleChange = (commentId: string) => {
-    handleEditMode && handleEditMode(commentId);
+    handleEditMode?.(commentId);
   };
   return (
     <div className="flex justify-end gap-[14px] mt-[22px] font-bold">

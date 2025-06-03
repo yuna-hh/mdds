@@ -3,7 +3,7 @@ import { handleError, handleNetworkError, handleSuccess } from "@/utils/response
 import { NextRequest } from "next/server"
 
 export async function DELETE(
-  request: NextRequest,
+  _: NextRequest,
   {params} : {params: {commentId: string}}
 ) {
   const supabase = await createClient()
@@ -17,8 +17,8 @@ export async function DELETE(
     if(error) return handleError("댓글 삭제를 실패했습니다")
     return handleSuccess("댓글 삭제가 완료되었습니다")
   } catch (error) {
-    handleNetworkError()
     console.log(error)
+    handleNetworkError()
   }
 }
 
@@ -27,7 +27,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { commen
   const { commentId } = await params
   const commentData = await request.json()
   try {
-    const { error, data } = await supabase
+    const { error } = await supabase
     .from("comments")
     .update(commentData)
     .eq("id", commentId)
@@ -35,7 +35,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { commen
     if(error) return handleError("댓글 수정을 실패하였습니다")
     return handleSuccess("댓글 수정이 완료되었습니다")
   } catch(error) {
-    handleNetworkError()
     console.log(error)
+    handleNetworkError()
   }
 }

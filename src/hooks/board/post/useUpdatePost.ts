@@ -1,4 +1,4 @@
-import { updatePost, uploadPost } from '@/service/post'
+import { updatePost } from '@/service/post'
 import { PostRequestType} from '@/types/post'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -20,9 +20,9 @@ export default function useUpDatePost(){
       }
       Notify.success("게시글 수정이 완료되었습니다")
       router.push(`/board/detail/${postId}`)
-      // router.push(`/`)
     },
     onError: (error) => {
+      console.log(error)
       Notify.failure("게시물 수정 중 네트워크 오류가 발생하였습니다")
     }
   })

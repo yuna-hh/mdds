@@ -16,6 +16,7 @@ export function useDeletePost(postId: string) {
       router.push("/");
     },
     onError: (error) => {
+      console.log(error)
       Notify.failure("게시글 삭제 중 오류가 발생하였습니다")
     }
 

@@ -11,8 +11,7 @@ export async function handleCompression (file: File)  {
   } 
   try  { 
     if (file.type.endsWith("heic")) {
-      let blob = file
-      await heic2any({blob: blob, toType : "image/jpg"})
+      await heic2any({blob: file, toType : "image/jpg"})
       .then((resultBlob) => {
         file = new File([resultBlob as Blob], file.name.split(".")[0]+".jpg", {type: "image/jpg"})
       })

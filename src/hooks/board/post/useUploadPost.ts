@@ -21,6 +21,7 @@ export default function useUploadPost(){
       router.push("/")
     },
     onError: (error) => {
+      console.log(error)
       Notify.failure("게시물 등록 중 네트워크 오류가 발생하였습니다")
     }
   })
