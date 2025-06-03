@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
         if(error) return handleError("로그인에 실패하셨습니다")
       
           return handleSuccess(data, "로그인 되셨습니다")
-  } catch {
+  } catch (error) {
+    console.log(error)
     return handleNetworkError()
 
   }

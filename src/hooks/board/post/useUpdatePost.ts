@@ -1,4 +1,4 @@
-import { updatePost, uploadPost } from '@/service/post'
+import { updatePost } from '@/service/post'
 import { PostRequestType} from '@/types/post'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'

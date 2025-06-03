@@ -26,7 +26,8 @@ export async function POST(request: NextRequest) {
 
     if(userError) return handleError(userError.message)
     return handleSuccess("회원가입이 완료되었습니다")
-  } catch {
+  } catch (error) {
+    console.log(error)
     return handleNetworkError()
   }
 }

@@ -17,6 +17,7 @@ export async function GET(
     if(error) return handleError("데이터를 불러오는데 실패하였습니다")
     return handleSuccess(data)
   } catch (error) {
+    console.log(error)
     return handleNetworkError()
   }
 }
@@ -37,8 +38,8 @@ export async function DELETE(
     if(error) return handleError("게시글 삭제를 실패하였습니다")
     return handleSuccess("게시글 삭제가 완료되었습니다")
   } catch (error) {
-    handleNetworkError()
     console.log(error)
+    handleNetworkError()
   }
 }
 
@@ -57,7 +58,7 @@ export async function PATCH(
     if(error) return handleError("게시글 수정을 실패하였습니다")
     return handleSuccess("게시글 수정이 완료되었습니다")
   } catch (error) {
-    handleNetworkError()
     console.log(error)
+    handleNetworkError()
   }
 }

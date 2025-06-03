@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
     if(error) return handleError("데이터를 불러오는데 실패하였습니다")
     return handleSuccess(data)
   } catch(error) {
+    console.log(error)
     return handleNetworkError()
   }
 }
