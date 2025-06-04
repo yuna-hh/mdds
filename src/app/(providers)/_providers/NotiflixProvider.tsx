@@ -8,8 +8,8 @@ const NotiflixProvider = ({
   useEffect(() => {
     Notiflix.Notify.init({
       position: "right-top",
-      distance: "75px",
-      timeout: 2000,
+      distance: "20px",
+      timeout: 1500,
       fontFamily: "Pretendard",
     });
     Notiflix.Confirm.init({
