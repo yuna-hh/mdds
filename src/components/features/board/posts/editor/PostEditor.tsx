@@ -19,13 +19,12 @@ const PostEditor = ({ postId, isEdit }: PostWriteType) => {
   const { data: prevPostData } = useGetPost(postId);
   const router = useRouter();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (prevPostData && user?.id !== prevPostData.author) {
       Notify.failure("비정상적인 접근입니다");
       router.push("/");
     }
-  }, [prevPostData, user]);
+  }, [prevPostData, user, router]);
 
   if (!categoryData) return <Loading />;
 

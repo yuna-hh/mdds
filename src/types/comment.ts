@@ -10,3 +10,7 @@ export type commentListData = {
 export type CommentsResponseType = Tables<"comments"> & {user: Pick<Tables<"user">, "name">}
 
 export type CommentsRequestType = Omit <Tables<"comments">, "created_at" | "id">
+
+export type CommentParamsType = {
+  params: Promise<{ commentId: string }>
+}

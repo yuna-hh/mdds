@@ -1,10 +1,11 @@
 import { createClient } from "@/supabase/server";
+import { PostParamsType } from '@/types/post';
 import { getPaginationParams } from '@/utils/paginate/pagination';
 import { handleError, handleNetworkError, handleSuccess } from "@/utils/response/api";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest,
-  {params}: {params: {postId: string}}) {
+  { params }: PostParamsType) {
   const supabase = await createClient()
   const {postId} = await params;
   const searchParams = request.nextUrl.searchParams
@@ -28,7 +29,7 @@ export async function GET(request: NextRequest,
 
 export async function POST(
   request: NextRequest, 
-  { params }: { params: { postId: string}}) {
+  { params }: PostParamsType) {
     const supabase = await createClient()
     const { postId } = await params
     const commentData = await request.json()

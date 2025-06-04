@@ -1,10 +1,11 @@
 import { createClient } from "@/supabase/server"
+import { CommentParamsType } from '@/types/comment'
 import { handleError, handleNetworkError, handleSuccess } from "@/utils/response/api"
 import { NextRequest } from "next/server"
 
 export async function DELETE(
   _: NextRequest,
-  {params} : {params: {commentId: string}}
+  { params } : CommentParamsType
 ) {
   const supabase = await createClient()
   const { commentId } = await params
@@ -22,7 +23,7 @@ export async function DELETE(
   }
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { commentId: string }}) {
+export async function PATCH(request: NextRequest, { params }: CommentParamsType) {
   const supabase = await createClient()
   const { commentId } = await params
   const commentData = await request.json()
