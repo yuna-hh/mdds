@@ -7,7 +7,12 @@ import { Notify } from 'notiflix'
 export function useSubmitJoin() {
   const router = useRouter()
   const handleSubmitJoin = async(data: JoinDataType) => {
-    const {passwordConfirm: _, ...joinData} = data
+    const joinData = {
+      email: data.email,
+      password: data.password,
+      name: data.name,
+      phone: data.phone
+    }
     const response = await handleJoin(joinData)
     if(response.message === "회원가입에 실패하였습니다") {
       return Notify.failure("이미 가입된 이메일 입니다")   

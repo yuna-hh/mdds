@@ -1,14 +1,15 @@
-import imageCompression from 'browser-image-compression';
-import heic2any from 'heic2any';
 import { Notify } from 'notiflix';
 
 export async function handleCompression (file: File)  {
+  const imageCompression = (await import('browser-image-compression')).default
+  const heic2any = (await import("heic2any")).default
+
   const  options  =  { 
     maxSizeMB : 1, 
     maxWidthOrHeight : 1920, 
     useWebWorker : true,
     fileType: "image/webp"
-  } 
+  }
   try  { 
     if (file.type.endsWith("heic")) {
       await heic2any({blob: file, toType : "image/jpg"})

@@ -1,10 +1,11 @@
 import { createClient } from '@/supabase/server';
+import { PostParamsType } from '@/types/post';
 import { handleError, handleNetworkError, handleSuccess } from '@/utils/response/api';
 import { NextRequest } from 'next/server';
 
 export async function GET(
   _: NextRequest,
-  { params } : { params: { postId: string }}) {
+  { params } : PostParamsType) {
   const supabase = await createClient()
   const { postId } = await params
   try{
@@ -25,7 +26,7 @@ export async function GET(
 
 export async function DELETE(
   _: NextRequest,
-  { params } : { params: { postId: string }}
+  { params } : PostParamsType
 ) {
   const supabase = await createClient()
   const { postId } = await params
@@ -45,7 +46,7 @@ export async function DELETE(
 
 export async function PATCH(
   request: NextRequest,
-  {params} : {params: {postId: string}}
+  { params } : PostParamsType
 ) {
   const supabase = await createClient()
   const { postId } = await params

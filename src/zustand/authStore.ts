@@ -8,7 +8,7 @@ type AuthStoreType = {
 }
 
 export const authStore = create<AuthStoreType>((set) => ({
-  user:null,
+  user: null,
   initial: false,
   saveUser: (userInfo) => set({user: userInfo, initial: true})
 }))

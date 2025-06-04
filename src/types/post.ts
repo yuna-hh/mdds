@@ -25,3 +25,7 @@ export type PostResponseType = Tables<"posts"> & { teams: Pick <Tables<"teams">,
 export type PostRequestType = Omit <Tables<"posts">,"created_at" | "id">
 
 export type TeamsType = Tables<"teams">
+
+export type PostParamsType = {
+  params: Promise<{ postId: string }>
+}

@@ -7,7 +7,6 @@ import {
 } from "@/constants/validation/authValidation";
 import { useSubmitLogin } from "@/hooks/auth/useSubmitLogin";
 import { LoginType } from "@/types/auth";
-import React from "react";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
