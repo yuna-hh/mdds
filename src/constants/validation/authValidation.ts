@@ -36,7 +36,6 @@ export const PHONE_NUMBER_VALIDATION = {
   validate: (value: string | undefined) => {
     if(!value) return true;
     return (/^\d+$/.test(value)) || "숫자만 입력해주세요"
-    // 숫자만 입력 가능하게
   }
 }
 

@@ -17,8 +17,8 @@ export default function useUploadPost(){
         Notify.failure("게시글 등록에 실패하였습니다. 다시 시도해주세요")
         return
       }
-      Notify.success("게시글 등록이 완료되었습니다")
       router.push("/")
+      Notify.success("게시글 등록이 완료되었습니다")
     },
     onError: (error) => {
       console.log(error)
