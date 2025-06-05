@@ -6,6 +6,9 @@ import NotiflixProvider from "./(providers)/_providers/NotiflixProvider";
 export const metadata: Metadata = {
   title: "물댄동산",
   description: "물댄동산 지출증빙 내역 사이트",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
