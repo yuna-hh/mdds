@@ -48,7 +48,6 @@ const CommentForm = ({
       author: user?.id as string,
       ...(comment && { is_edited: true }),
     };
-    // comment ? updateComment(commentData) : uploadComment(commentData);
     if (comment) {
       updateComment(commentData);
     } else {
@@ -61,7 +60,6 @@ const CommentForm = ({
     }
 
     handleEditMode?.("");
-    // handleEditMode && handleEditMode("");
   };
   return (
     <form
