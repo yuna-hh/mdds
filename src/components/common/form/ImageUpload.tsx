@@ -7,6 +7,7 @@ import useUploadImage from "@/hooks/board/post/useUploadImage";
 import { handleCompression } from "@/hooks/common/useImageCompression";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
+import { Notify } from "notiflix";
 import React, { useEffect, useState } from "react";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 
@@ -18,29 +19,29 @@ type ImageUploadProps = {
 
 const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
   const [preview, setPreview] = useState(prevImageUrl || "");
-  const { mutate: uploadImage } = useUploadImage();
+  const { mutateAsync: uploadImage } = useUploadImage();
   const imageHandler = async (
     e: React.ChangeEvent<HTMLInputElement>,
     onChange: (...event: unknown[]) => void
   ) => {
     if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      if (!extensionValidation(file)) return;
-      const { compressedImageUrl, compressedImage } = await handleCompression(
-        file
-      );
-
-      const formData = new FormData();
-      formData.append("file", compressedImage as File);
-
-      await uploadImage(formData, {
-        onSuccess: (data) => {
-          onChange(
-            `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}board//${data.data}`
-          );
-        },
-      });
-      setPreview(compressedImageUrl);
+      try {
+        const file = e.target.files[0];
+        if (!extensionValidation(file)) return;
+        const { compressedImageUrl, compressedImage } = await handleCompression(
+          file
+        );
+        const formData = new FormData();
+        formData.append("file", compressedImage as File);
+        const data = await uploadImage(formData);
+        onChange(
+          `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}board//${data.data}`
+        );
+        setPreview(compressedImageUrl);
+      } catch (error) {
+        Notify.failure("이미지 업로드중 오류가 발생하였습니다");
+        console.log(error);
+      }
     }
   };
 
