@@ -51,7 +51,6 @@ const PostForm = ({
           }
         : {},
   });
-
   const { mutate: uploadPost } = useUploadPost();
   const { mutate: updatePost } = useUpDatePost();
   const onSubmit = (data: PostRequestType) => {

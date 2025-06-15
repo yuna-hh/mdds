@@ -37,7 +37,7 @@ const Button = ({
     [onClick]
   );
 
-  const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg ${bgColor[variant]}`;
+  const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg ${bgColor[variant]} disabled:cursor-not-allowed! disabled:bg-gray-1`;
   if (href) {
     return confirm ? (
       <button
