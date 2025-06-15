@@ -25,7 +25,7 @@ const MobilePostList = () => {
           <li key={post.id}>
             <Link
               href={user ? `/board/detail/${post.id}` : `/login`}
-              className="grid grid-cols-[1fr_4fr] items-center"
+              className="grid grid-cols-[1fr_6fr] items-center"
               onClick={() =>
                 !user && Notify.warning("로그인 후 이용 가능합니다")
               }

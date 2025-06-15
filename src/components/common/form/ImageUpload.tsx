@@ -19,7 +19,6 @@ type ImageUploadProps = {
 const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
   const [preview, setPreview] = useState(prevImageUrl || "");
   const { mutate: uploadImage } = useUploadImage();
-
   const imageHandler = async (
     e: React.ChangeEvent<HTMLInputElement>,
     onChange: (...event: unknown[]) => void
@@ -30,18 +29,18 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
       const { compressedImageUrl, compressedImage } = await handleCompression(
         file
       );
-      setPreview(compressedImageUrl);
 
       const formData = new FormData();
       formData.append("file", compressedImage as File);
 
-      uploadImage(formData, {
+      await uploadImage(formData, {
         onSuccess: (data) => {
           onChange(
             `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}board//${data.data}`
           );
         },
       });
+      setPreview(compressedImageUrl);
     }
   };
 
