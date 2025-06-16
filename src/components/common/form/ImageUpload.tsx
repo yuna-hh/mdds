@@ -8,40 +8,53 @@ import { handleCompression } from "@/hooks/common/useImageCompression";
 import { PostRequestType } from "@/types/post";
 import Image from "next/image";
 import { Notify } from "notiflix";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Control, Controller, FieldErrors } from "react-hook-form";
 
 type ImageUploadProps = {
   control: Control<PostRequestType, string>;
   errors: FieldErrors<PostRequestType>;
   prevImageUrl?: string;
+  setIsdone: Dispatch<SetStateAction<boolean>>;
 };
 
-const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
+const ImageUpload = ({
+  control,
+  errors,
+  prevImageUrl,
+  setIsdone,
+}: ImageUploadProps) => {
   const [preview, setPreview] = useState(prevImageUrl || "");
-  const { mutateAsync: uploadImage } = useUploadImage();
+  const { mutateAsync: uploadImage, isPending } = useUploadImage();
+
   const imageHandler = async (
     e: React.ChangeEvent<HTMLInputElement>,
     onChange: (...event: unknown[]) => void
   ) => {
     if (e.target.files && e.target.files.length > 0) {
+      setIsdone(true);
+      const file = e.target.files[0];
+      if (!extensionValidation(file)) return;
+
       try {
-        const file = e.target.files[0];
-        if (!extensionValidation(file)) return;
         const { compressedImageUrl, compressedImage } = await handleCompression(
           file
         );
         const formData = new FormData();
         formData.append("file", compressedImage as File);
+
         const data = await uploadImage(formData);
+
         onChange(
           `${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}board//${data.data}`
         );
+
         setPreview(compressedImageUrl);
       } catch (error) {
         Notify.failure("이미지 업로드중 오류가 발생하였습니다");
         console.log(error);
       }
+      setIsdone(false);
     }
   };
 
@@ -59,7 +72,7 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
       control={control}
       rules={IMAGE_VALIDATION}
       render={({ field: { onChange } }) => (
-        <div className="flex flex-col">
+        <div className="flex flex-col relative text-center">
           <label
             htmlFor="image"
             className="py-[25px] text-[18px] font-semibold text-main-2 border border-dashed bg-main-3 rounded-lg cursor-pointer"
@@ -86,7 +99,11 @@ const ImageUpload = ({ control, errors, prevImageUrl }: ImageUploadProps) => {
                 </>
               )}
             </div>
-
+            {isPending && (
+              <span className="inline-block mt-[10px] text-[14px] animate-pulse">
+                잠시만 기다려주세요
+              </span>
+            )}
             <input
               id="image"
               type="file"

@@ -10,6 +10,7 @@ type ButtonProps = {
   variant?: "default" | "option";
   href?: string;
   confirm?: string;
+  disable?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 } & ComponentProps<"button">;
 
@@ -23,6 +24,7 @@ const Button = ({
   variant = "default",
   href,
   confirm,
+  disable,
   onClick,
   ...props
 }: ButtonProps) => {
@@ -37,7 +39,7 @@ const Button = ({
     [onClick]
   );
 
-  const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg ${bgColor[variant]} disabled:cursor-not-allowed! disabled:bg-gray-1`;
+  const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg ${bgColor[variant]} disabled:cursor-not-allowed! disabled:bg-gray-1!`;
   if (href) {
     return confirm ? (
       <button
@@ -68,7 +70,12 @@ const Button = ({
   }
 
   return (
-    <button className={baseButtonStyle} onClick={throttledClick} {...props}>
+    <button
+      className={baseButtonStyle}
+      onClick={throttledClick}
+      {...props}
+      disabled={disable}
+    >
       {content}
     </button>
   );
