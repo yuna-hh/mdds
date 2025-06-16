@@ -16,6 +16,7 @@ import SelectTeam from "./category/SelectTeam";
 import useUploadPost from "@/hooks/board/post/useUploadPost";
 import { User } from "@supabase/supabase-js";
 import useUpDatePost from "@/hooks/board/post/useUpdatePost";
+import { useState } from "react";
 
 type PostWriteFormProps = {
   categoryData: TeamsType[];
@@ -53,6 +54,8 @@ const PostForm = ({
   });
   const { mutate: uploadPost } = useUploadPost();
   const { mutate: updatePost } = useUpDatePost();
+  const [isdone, setIsdone] = useState(false);
+
   const onSubmit = (data: PostRequestType) => {
     const postData = {
       ...data,
@@ -118,6 +121,7 @@ const PostForm = ({
           prevImageUrl={
             isEdit && prevPostData ? prevPostData.img_url : undefined
           }
+          setIsdone={setIsdone}
         />
         <div className="flex justify-center gap-[9px] mt-[38px] ">
           <Button
@@ -126,7 +130,7 @@ const PostForm = ({
             variant="option"
             confirm="글 작성을 취소하시겠습니까?"
           />
-          <Button content={isEdit ? "수정하기" : "등록하기"} />
+          <Button content={isEdit ? "수정하기" : "등록하기"} disable={isdone} />
         </div>
       </form>
     </>
