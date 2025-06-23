@@ -3,7 +3,7 @@ import throttle from "lodash.throttle";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Notiflix from "notiflix";
-import React, { ComponentProps, MouseEvent, useMemo } from "react";
+import React, { ComponentProps, MouseEvent, useCallback } from "react";
 
 type ButtonProps = {
   content: string;
@@ -28,14 +28,15 @@ const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
+  console.log("Button 렌더링됨");
   const router = useRouter();
-  const throttledClick = useMemo(
-    () =>
-      throttle((event: MouseEvent<HTMLButtonElement>) => {
-        if (onClick) {
-          onClick(event);
-        }
-      }, 800),
+  const throttledClick = useCallback(
+    throttle((event: MouseEvent<HTMLButtonElement>) => {
+      console.log("throttle 실행됨:", Date.now());
+      if (onClick) {
+        onClick(event);
+      }
+    }, 800),
     [onClick]
   );
 
@@ -81,4 +82,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default React.memo(Button);
