@@ -1,9 +1,9 @@
 "use client";
-import throttle from "lodash.throttle";
+import { useThrottledClick } from "@/hooks/common/useThrottledClick";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Notiflix from "notiflix";
-import React, { ComponentProps, MouseEvent, useCallback } from "react";
+import React, { ComponentProps, MouseEvent } from "react";
 
 type ButtonProps = {
   content: string;
@@ -28,17 +28,8 @@ const Button = ({
   onClick,
   ...props
 }: ButtonProps) => {
-  console.log("Button 렌더링됨");
   const router = useRouter();
-  const throttledClick = useCallback(
-    throttle((event: MouseEvent<HTMLButtonElement>) => {
-      console.log("throttle 실행됨:", Date.now());
-      if (onClick) {
-        onClick(event);
-      }
-    }, 800),
-    [onClick]
-  );
+  const throttledClick = useThrottledClick(onClick);
 
   const baseButtonStyle = `block w-[225px] py-[20px] text-2xl font-bold text-center text-white rounded-lg ${bgColor[variant]} disabled:cursor-not-allowed! disabled:bg-gray-1!`;
   if (href) {
@@ -82,4 +73,4 @@ const Button = ({
   );
 };
 
-export default React.memo(Button);
+export default Button;

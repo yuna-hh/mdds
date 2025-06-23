@@ -1,11 +1,11 @@
 import throttle from 'lodash.throttle';
-import { MouseEvent, useMemo } from 'react';
+import { MouseEvent, useCallback } from 'react';
 
 export function useThrottledClick(
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 ) {
-  const throttledClick = useMemo(
-      () => throttle((event: MouseEvent<HTMLButtonElement>) => {
+  const throttledClick = useCallback(
+      throttle((event: MouseEvent<HTMLButtonElement>) => {
         if (onClick) {
           onClick(event);
         }
