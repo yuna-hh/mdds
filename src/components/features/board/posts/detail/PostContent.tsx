@@ -5,9 +5,11 @@ import { useGetPost } from "@/hooks/board/post/useGetPost";
 import Loading from "@/components/common/status/Loading";
 import Image from "next/image";
 import { authStore } from "@/zustand/authStore";
+import ImageLightbox from "./ImageLightbox";
 const PostContent = ({ postId }: { postId: string }) => {
   const { user } = authStore();
   const [isLoading, setIsLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { data, isPending } = useGetPost(postId);
   if (!data) return <Loading />;
   if (isPending) return <Loading />;
@@ -27,8 +29,14 @@ const PostContent = ({ postId }: { postId: string }) => {
         <span className="mr-1">[{team}]</span>
         <span>{title}</span>
       </div>
-      <div className="relative border border-main-1 rounded-lg aspect-auto">
+      <div className="group relative border border-main-1 rounded-lg aspect-auto">
         {isLoading && <Loading />}
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          className="absolute hidden sm:group-hover:flex justify-center items-center w-full h-full text-white text-2xl font-bold bg-black/5 backdrop-blur-sm rounded-lg"
+        >
+          <span>이미지 크게 보기</span>
+        </div>
         <Image
           src={img_url}
           alt="첨부된 이미지"
@@ -41,6 +49,7 @@ const PostContent = ({ postId }: { postId: string }) => {
           onLoad={() => setIsLoading(false)}
         />
       </div>
+
       <div className="w-full px-[17px] border border-main-1 rounded-lg">
         <ul className="my-[15px] sm:my-[30px] break-words space-y-2 list-header">
           <li>사용항목 : {usage_detail}</li>
@@ -50,6 +59,7 @@ const PostContent = ({ postId }: { postId: string }) => {
         </ul>
         {user?.id === author && <PostAction postId={postId} />}
       </div>
+      {isOpen && <ImageLightbox img_url={img_url} setIsOpen={setIsOpen} />}
     </div>
   );
 };

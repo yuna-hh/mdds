@@ -29,6 +29,9 @@ export const USER_NAME_VALIDATION = {
   maxLength: {
     value: 6,
     message: "최대 6자까지 입력 가능합니다"
+  },
+  validate: (value: string) => {
+    if(value.includes("관리자")) return `"관리자"는 포함할 수 없습니다`
   }
 }
 
