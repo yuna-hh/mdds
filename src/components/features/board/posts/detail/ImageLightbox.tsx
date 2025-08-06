@@ -8,10 +8,10 @@ type ImageLightboxProps = {
 
 const ImageLightbox = ({ img_url, setIsOpen }: ImageLightboxProps) => {
   return (
-    <div className="absolute w-[1000px] py-[40px] border border-main-1 bg-white rounded-lg">
+    <div className="absolute w-[1000px] py-[40px] border border-main-1 bg-white rounded-lg z-50">
       <div className="max-w-[800px] m-auto">
         <button
-          className="absolute top-3 right-3"
+          className="absolute top-3 right-3 cursor-pointer"
           onClick={() => setIsOpen(false)}
         >
           <Image
