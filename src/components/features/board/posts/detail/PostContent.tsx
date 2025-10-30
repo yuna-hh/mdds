@@ -31,12 +31,15 @@ const PostContent = ({ postId }: { postId: string }) => {
       </div>
       <div className="group relative border border-main-1 rounded-lg aspect-auto">
         {isLoading && <Loading />}
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className="absolute hidden sm:group-hover:flex justify-center items-center w-full h-full text-white text-2xl font-bold bg-black/5 backdrop-blur-sm rounded-lg"
-        >
-          <span>이미지 크게 보기</span>
-        </div>
+        {!isLoading && (
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className="absolute hidden sm:group-hover:flex justify-center items-center w-full h-full text-white text-2xl font-bold bg-black/5 backdrop-blur-sm rounded-lg"
+          >
+            <span>이미지 크게 보기</span>
+          </div>
+        )}
+
         <Image
           src={img_url}
           alt="첨부된 이미지"
